@@ -1,0 +1,13 @@
+Lizzy
+	dijkstra
+	kruskal
+
+Gyovanni
+	graph
+	vertex (use an adjacency list of edges, linked lists)
+	edge
+
+Bijan
+	main
+	readfile
+	writefile?
