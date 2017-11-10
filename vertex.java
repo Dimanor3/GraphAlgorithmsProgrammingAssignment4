@@ -25,8 +25,52 @@ public class Vertex{
   This get method will get the dolphin's ID.
   @return dolphinId: This will return the dolphin's ID.
   */
-  public String getDolphinId(){
+
+  public boolean equals(Object vertex)
+  {
+    if(this == vertex)
+    {
+      return true;
+    }
+    if(vertex == null)
+    {
+      return false;
+    }
+    if(getClass() != vertex.getClass())
+    {
+      return false;
+    }
+
+    Vertex newVertex = (Vertex) vertex;
+    {
+      if(dolphinId == null)
+      {
+        return false;
+      }
+      else if(!dolphinId.equals(vertex.dolphinId))
+      {
+        return false;
+      }
+      return true;
+    }
+
+  }
+
+  public String getDolphinId()
+  {
     return dolphinId
   }
+
+  public int makeVertex()
+  {
+    int finalNumber = 1;
+    final int number = 31;
+
+    number = number * finalNumber + ((id == null)) ? 0 : id.makeVertex());
+
+    return number;
+  }
+
+
 
   }

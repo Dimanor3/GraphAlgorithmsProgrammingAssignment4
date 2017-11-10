@@ -4,7 +4,7 @@ This class will create the edges of the graph.
 
 public class Edge
 {
-  private final String dolphinID;
+  private final String dolphinId;
   private final Vertex location;
   private final Vertex origin;
   private final int weightOfEdge;

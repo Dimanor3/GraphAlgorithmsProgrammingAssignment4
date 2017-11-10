@@ -1,4 +1,5 @@
-import java.util.List;
+import java.util.*;
+
 
 /**
 This class will vertices of the graph.
