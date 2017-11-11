@@ -98,19 +98,55 @@ public class LCS {
 	    	rF.closeFile ();
 		}
 
-		// Gets the starting time of findLCS.
-		long start = System.nanoTime ();
+        int choice = -1;
 
-		for (int i = 0; i < lcsList.size (); i += 2) {
-            if (lcsList.size () != i + 1)
-        		finalizedLCS.add (findLCS (lcsList.get (i + 1), lcsList.get (i)));
-        }
+        do {
+            do {
+                System.out.println ("What do you want to do?");
+                System.out.println ("1. Graph");
+                System.out.println ("2. Dijkstra");
+                System.out.println ("3. Kruskal");
+                System.out.println ("4. Print");
+                System.out.println ("5. Performance");
+                System.out.println ("6. Quit");
+            } while (choice <= 0 || choice >= 7);
 
-		// Gets the ending time of findLCS.
-		long end = System.nanoTime ();
+            switch (choice) {
+                case 1:
+                    break;
 
-		// Gets the total time that findLCS ran.
-		long totalTime = end - start;
+                case 2:
+    	        	// Gets the starting time of findLCS.
+	            	long start = System.nanoTime ();
+
+
+            		// Gets the ending time of findLCS.
+            		long end = System.nanoTime ();
+
+            		// Gets the total time that findLCS ran.
+            		long totalTime = end - start;
+                    break;
+
+                case 3:
+            		// Gets the starting time of findLCS.
+            		long start = System.nanoTime ();
+
+
+            		// Gets the ending time of findLCS.
+            		long end = System.nanoTime ();
+
+            		// Gets the total time that findLCS ran.
+            		long totalTime = end - start;
+                    break;
+
+                case 4:
+                    break;
+
+                case 5:
+                    break;
+            }
+        } while (choice != 6);
+
 
 		// Creates answer.txt to be written to.
 		wF.createFile ();
@@ -138,76 +174,3 @@ public class LCS {
 
 		wF.addOrderedList (lcsListString);
 	}
-
-	/**
-	* This method will find the strings that are most common from the array of strings.
-	* @param String str1: This will hold the first string.
-	* @param String str2: This will hold the second string.
-	* @return String (lcs): This will return the short string of the lcs.
-	*/
-	public static String findLCS(String str1, String str2) {
-		// Gets the length size of each string.
-		int str1Length = str1.length ();
-		int str2Length = str2.length ();
-
-		// Builds a table out of the string sizes.
-		int[][] table = new int[str1Length + 1][str2Length + 1];
-
-		/*
-			Bottom up, compare characters in each
-			element of the table and fill the table
-			with integers accordingly.
-		*/
-		for (int row = 0; row <= str1Length; row++) {
-			for (int column = 0; column <= str2Length; column++) {
-				if (row == 0 || column == 0)
-					table[row][column] = 0;
-				else if (str1.charAt (row-1) == str2.charAt (column-1))
-					table[row][column] = table[row-1][column-1] + 1;
-				else
-					table[row][column] = Math.max (table[row-1][column], table[row][column-1]);
-			}
-		}
-
-		// Current index, begin at far right corner of the table.
-		int find = table[str1Length][str2Length];
-
-		// Array of the characters in the LCS.
-		char lcs[] = new char[find + 1];
-
-		/*
-			Move through the table and store the
-			characters in the LCS output array
-			from the table.
-		*/
-		int i = str1Length, j = str2Length;
-
-		/*
-			Traverses through each possible location check,
-			and determines whether the characters at indices
-			i - 1 and j - 1 are the same, if they are it
-			increments the according LCS position, if not it
-			traverses left or up in the table depending on
-			which indice holds the greater value.
-		*/
-		while (i > 0 && j > 0) {
-			if (str1.charAt (i-1) == str2.charAt (j-1)) {
-				lcs[find-1] = str1.charAt (i-1);
-
-				i--;
-				j--;
-				find--;
-			} else if (table[i-1][j] > table[i][j-1]) {
-				i--;
-			} else {
-				j--;
-			}
-		}
-
-		/*
-			Return the array of chars as the LCS
-			in String format.
-		*/
-		return new String (lcs);
-	}
-}
