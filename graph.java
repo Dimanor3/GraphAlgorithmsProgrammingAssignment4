@@ -24,4 +24,13 @@ public class Graph{
   {
     return edgiesG;
   }
-}
+  
+  public int numVertices()
+  {
+	  return verticesG.size();
+  }
+  
+  public int numEdges()
+  {
+	  return edgiesG.size();
+  }
