@@ -63,17 +63,19 @@
 */
 
 import java.io.*;
-
+import java.util.Scanner;
 import java.util.*;
 
-public class LCS {
+public class GAPA4 {
 	public static void main (String[] args) {
-		String lcsListString = "";
+		String gapa4ListString = "";
+
+        Scanner input = new Scanner (System.in);
 
 		// Takes the DNA Strands to have LCS ran on it.
-		ArrayList<String> lcsList = new ArrayList<String> ();
+		ArrayList<String> gapa4List = new ArrayList<String> ();
 
-        ArrayList<String> finalizedLCS = new ArrayList<String> ();
+        ArrayList<String> finalizedGAPA4 = new ArrayList<String> ();
 
 		// Gets access to the readfile class.
 		readfile rF = new readfile ();
@@ -82,15 +84,17 @@ public class LCS {
 		writefile wF = new writefile ();
 
 		// Gets access to the LCS class.
-		LCS lcsAccess = new LCS ();
+		GAPA4 gapa4Access = new GAPA4 ();
+
+        long start = 0, end = 0, totalTime = 0;
 
 		// Attempts to open selected file(s).
 		for (int i = 0; i < args.length; i++) {
             // Opens selected files.
 			rF.openFile (args[i]);
             
-			// Reads selected file into lcsList.
-			lcsList.addAll (rF.readFile ());
+			// Reads selected file into gapa4List.
+			gapa4List.addAll (rF.readFile ());
             
             rF.clearFile ();
 
@@ -109,34 +113,42 @@ public class LCS {
                 System.out.println ("4. Print");
                 System.out.println ("5. Performance");
                 System.out.println ("6. Quit");
+
+                choice = input.nextInt ();
             } while (choice <= 0 || choice >= 7);
 
             switch (choice) {
                 case 1:
+
+                    System.out.println ("\nThe graph has been created!\n");
                     break;
 
                 case 2:
     	        	// Gets the starting time of findLCS.
-	            	long start = System.nanoTime ();
+	            	start = System.nanoTime ();
 
 
             		// Gets the ending time of findLCS.
-            		long end = System.nanoTime ();
+            		end = System.nanoTime ();
 
             		// Gets the total time that findLCS ran.
-            		long totalTime = end - start;
+            		totalTime = end - start;
+
+                    System.out.println ("\nDijkstra has been performed!\n");
                     break;
 
                 case 3:
             		// Gets the starting time of findLCS.
-            		long start = System.nanoTime ();
+            		start = System.nanoTime ();
 
 
             		// Gets the ending time of findLCS.
-            		long end = System.nanoTime ();
+            		end = System.nanoTime ();
 
             		// Gets the total time that findLCS ran.
-            		long totalTime = end - start;
+            		totalTime = end - start;
+
+                    System.out.println ("\nFloyd-Warshall has been performed!\n");
                     break;
 
                 case 4:
@@ -147,30 +159,8 @@ public class LCS {
             }
         } while (choice != 6);
 
+        System.out.println ("\nQuitting!\n");
 
-		// Creates answer.txt to be written to.
-		wF.createFile ();
-
-        // Designs the layout for the output file.
-        for (int i = 0; i < lcsList.size (); i += 2) {
-            if (lcsList.size () != i + 1) {
-                lcsListString += "-----------------------------------------------------" + System.lineSeparator ();
-                lcsListString += "The DNA strands:" + System.lineSeparator ();
-                lcsListString += "\t" + lcsList.get (i) + System.lineSeparator ();
-                lcsListString += "\t" + lcsList.get (i + 1) + System.lineSeparator ();
-                lcsListString += "LCS is " + finalizedLCS.get (i / 2) + System.lineSeparator ();
-                lcsListString += "LCS length is " + (finalizedLCS.get (i / 2).length () - 1) + "." + System.lineSeparator ();
-                lcsListString += "-----------------------------------------------------" + System.lineSeparator ();
-            }
-        }
-
-        if (lcsList.size () == 0) {
-            lcsListString += "The input file is empty, please try again!" + System.lineSeparator ();
-        }
-
-        lcsListString += System.lineSeparator ();
-        lcsListString += "Running time: " + totalTime + " nano seconds" + System.lineSeparator ();
-        lcsListString += "-----------------------------------------------------" + System.lineSeparator ();
-
-		wF.addOrderedList (lcsListString);
+        input.close ();
 	}
+}
