@@ -16,6 +16,7 @@ public class Dijkstra {
     private Set<vertex> unexplored; //unexplored vertices
     private Map<vertex, vertex> parent; //predecessors of path vertices
     private Map<vertex, Integer> length; //weight associated with path
+	private stringSPath;
 
 	/**
 		Constructor
@@ -169,6 +170,7 @@ public class Dijkstra {
 		//create a linked list of vertices in the shortest path
         LinkedList<vertex> shortestP = new LinkedList<vertex>();
         vertex leg = v; //each leg in the path, to be updated
+		StringBuilder SB = new StringBuilder();
         
 		//if the shortest path does not exist
 		//return null
@@ -189,7 +191,14 @@ public class Dijkstra {
         //reorder the linkedlist so the shortest path
 		//terminates in the input vertex (forward order)
         Collections.reverse(shortestP);
-        return shortestP;
+		
+		for (vertex eachVertex : shortestP)
+		{
+			SB.append(eachVertex.getDolphinName());
+		}
+		
+		stringSPath = SB.tostring();
+		return stringSPath;
     }
 
 }

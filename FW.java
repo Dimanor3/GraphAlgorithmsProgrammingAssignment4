@@ -59,7 +59,7 @@ public class FloydWarshall {
  
     private static String getResult(double[][] fwMatrix, int[][] nextEdge) {
         StringBuilder SB = new StringBuilder();
-		SB.append("vertices   resultString weight   shortest resultString \n");
+		SB.append("vertices   path weight   shortest path \n");
         for (int k = 0; k < nextEdge.length; k++) {
             for (int h = 0; h < nextEdge.length; h++) {
                 if (k != h) {
