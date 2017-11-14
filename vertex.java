@@ -2,12 +2,11 @@
 This class will vertices of the graph.
 */
 
-public class Vertex{
-
+public class Vertex {
   final private String dolphinId;
   final private String dolphinName;
 
-  public Vertex(String dolphinId, String dolphinName){
+  public Vertex (String dolphinId, String dolphinName) {
     this.dolphinId = dolphinId;
     this.dolphinName = dolphinName;
   }
@@ -16,8 +15,7 @@ public class Vertex{
   This get method will get the dolphin's name.
   @return dolphinName: This will return the dolphin's name.
   */
-  public String getDolphinName()
-  {
+  public String getDolphinName () {
     return dolphinName;
   }
 
@@ -26,51 +24,44 @@ public class Vertex{
   @return dolphinId: This will return the dolphin's ID.
   */
 
-  public boolean equals(Object vertex)
-  {
-    if(this == vertex)
-    {
+  public boolean equals (Object vertex) {
+    if (this == vertex) {
       return true;
     }
-    if(vertex == null)
-    {
+
+    if (vertex == null) {
       return false;
     }
-    if(getClass() != vertex.getClass())
-    {
+
+    if (getClass () != vertex.getClass ()) {
       return false;
     }
 
     Vertex newVertex = (Vertex) vertex;
+    
     {
-      if(dolphinId == null)
-      {
+      if (dolphinId == null) {
         return false;
       }
-      else if(!dolphinId.equals(vertex.dolphinId))
-      {
+
+      else if (!dolphinId.equals (vertex.dolphinId)) {
         return false;
       }
+
       return true;
     }
-
   }
 
-  public String getDolphinId()
-  {
+  public String getDolphinId () {
     return dolphinId
   }
 
-  public int makeVertex()
-  {
+  public int makeVertex () {
     int finalNumber = 1;
     final int number = 31;
 
-    number = number * finalNumber + ((id == null)) ? 0 : id.makeVertex());
+    number = number * finalNumber + ((id == null)) ? 0 : id.makeVertex ());
 
     return number;
   }
-
-
-
-  }
+}
