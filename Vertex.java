@@ -44,7 +44,7 @@ public class Vertex {
         return false;
       }
 
-      else if (!dolphinId.equals (vertex.dolphinId)) {
+      else if (!dolphinId.equals (newVertex.dolphinId)) {
         return false;
       }
 
@@ -53,14 +53,14 @@ public class Vertex {
   }
 
   public String getDolphinId () {
-    return dolphinId
+    return dolphinId;
   }
 
   public int makeVertex () {
     int finalNumber = 1;
-    final int number = 31;
+    int number = 31;
 
-    number = number * finalNumber + ((id == null)) ? 0 : id.makeVertex ());
+    number = number * finalNumber + ((dolphinId == null) ? 0 : id.makeVertex ());
 
     return number;
   }

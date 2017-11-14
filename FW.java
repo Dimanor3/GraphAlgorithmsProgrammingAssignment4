@@ -1,17 +1,19 @@
 import static java.lang.String.format;
 import java.util.Arrays;
 import java.util.List;
+
+import sun.security.provider.certpath.Vertex;
  
-public class FloydWarshall {
-	private List<vertex> vertices;
-	private List<vertex> edges;
-	private int numVertices;
+public class FW {
+	private List<Vertex> vertices;
+	private List<Edge> edges;
+	private int numV;
 	private int[][] fwMatrix;
 	private int[][] nextMatrix;
 	private String shortestPaths;
-	private final int POSITIVE_INF = (int)double.POSITIVE_INFINITY;
+	private final int POSITIVE_INF = Integer.MAX_VALUE;
 	
-	public FW (Graph G)	{
+	public void FW (Graph G)	{
 		vertices = G.getVerticesG ();
 		edges = G.getEdgiesG ();
 		numV = vertices.size ();
@@ -25,8 +27,8 @@ public class FloydWarshall {
 			}
 		}
 		
-		for (edge eachEdge: edges) {
-			fwMatrix[vertices.indexOf (eachEdge.getBeginLocation ())][vertices.indexOf (eachEdge.getEndLocation ())] = eachEdge.getWeightOfEdge ();
+		for (Edge eachEdge: edges) {
+			fwMatrix[vertices.indexOf( eachEdge.getBeginLocation ())][vertices.indexOf (eachEdge.getEndLocation ())] = eachEdge.getWeightofEdge ();
 		}
 	}
  
@@ -42,7 +44,7 @@ public class FloydWarshall {
                         int xz = fwMatrix[x][z];
                         int sum = (yx != POSITIVE_INF && xz != POSITIVE_INF) ? (yx + xz): Integer.MAX_VALUE;
                         if (yz > sum) {
-                            sums[y][z] = sum;
+                            fwMatrix[y][z] = sum;
 							nextMatrix[y][z] = x;
                         }
 					}
@@ -57,18 +59,18 @@ public class FloydWarshall {
 		return shortestPaths;
 	}
 	
-	public List<vertex> getPath (int i, int j) {
-		List<vertex> path = new List ();
+	public List<Vertex> getPath (int i, int j) {
+		List<Vertex> path = new ArrayList<Vertex> ();
 		
-		getPath (i, P[i][j]);
-		path += vertices.get (P[i][j]);
-		getPath (P[i][j], j);
+		getPath (i, nextMatrix[i][j]);
+		path.add(vertices.get (nextMatrix[i][j]));
+		getPath (nextMatrix[i][j], j);
 
 		return path;
 	}
  
     private String getResult ()	{   
-		List<vertex> tempPath;
+		List<Vertex> tempPath;
 		StringBuilder SB = new StringBuilder ();
 
 		for (int k = 0; k < numV; k++) {
@@ -76,7 +78,7 @@ public class FloydWarshall {
                 if (fwMatrix[k][h] != POSITIVE_INF) {
 					SB.append ("\nShortest Path from: " + vertices.get (k).getDolphinName () + " to: " + vertices.get (h).getDolphinName () + "\n");
 					tempPath = getPath (k, h);
-					for (vertex v: tempPath) {	
+					for (Vertex v: tempPath) {	
 						SB.append (v.getDolphinName () + " --> ");
 					}
 

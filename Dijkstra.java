@@ -8,12 +8,12 @@ import java.util.Map;
 import java.util.Set;
 
 public class Dijkstra {
-    private List<vertex> vertices;                  // Vertices.
-    private List<edge> edges;                       // Edges.
-    private Set<vertex> explored;                   // Explored vertices.
-    private Set<vertex> unexplored;                 // Unexplored vertices.
-    private Map<vertex, vertex> parent;             // Predecessors of path vertices.
-    private Map<vertex, Integer> length;            // Weight associated with path.
+    private List<Vertex> vertices;                  // Vertices.
+    private List<Edge> edges;                       // Edges.
+    private Set<Vertex> explored;                   // Explored vertices.
+    private Set<Vertex> unexplored;                 // Unexplored vertices.
+    private Map<Vertex, vertex> parent;             // Predecessors of path vertices.
+    private Map<Vertex, Integer> length;            // Weight associated with path.
 	private stringSPath;
 
 	/**
@@ -25,8 +25,8 @@ public class Dijkstra {
          * in the graph to work with the algorithm,
          * from the input graph.
          */
-        this.vertices = new ArrayList<vertex> (graph.getVertexesG ());
-        this.edges = new ArrayList<edge> (graph.getEdgiesG ());
+        this.vertices = new ArrayList<Vertex> (graph.getVertexesG ());
+        this.edges = new ArrayList<Edge> (graph.getEdgiesG ());
     }
 
 	
@@ -34,11 +34,11 @@ public class Dijkstra {
 		Execution of the algorithm.
 		@param vertex s the starting vertex (source)
 	**/
-    public void doDijkstra (vertex s) {
-		explored = new HashSet<vertex> ();          // Hash Set of vertices that have been discovered.
-        unexplored = new HashSet<vertex> ();        // Hash set of vertices not yet discovered.
-        length = new HashMap<vertex, Integer> ();   // Hash Map representing the length associated with each vertex.
-        parent = new HashMap<vertex, vertex> ();    // Hash map to keep track of the predessors.
+    public void doDijkstra (Vertex s) {
+		explored = new HashSet<Vertex> ();          // Hash Set of vertices that have been discovered.
+        unexplored = new HashSet<Vertex> ();        // Hash set of vertices not yet discovered.
+        length = new HashMap<Vertex, Integer> ();   // Hash Map representing the length associated with each vertex.
+        parent = new HashMap<Vertex, vertex> ();    // Hash map to keep track of the predessors.
         length.put (s, 0);                          // Source vertex has an initial length of zero.
         unexplored.add (s);                         // s gets added to the discovered vertices.
         
@@ -49,7 +49,7 @@ public class Dijkstra {
             vertex.
         */
 		while (unexplored.size () > 0) {
-            vertex currentV = findMinV (unexplored);
+            Vertex currentV = findMinV (unexplored);
             explored.add (currentV);
             unexplored.remove (currentV);
             findMinLens (currentV);
@@ -61,12 +61,12 @@ public class Dijkstra {
 		Updates the lengths and parent pointers accordingly
 		@param vertex currentV
 	**/
-    private void findMinLens (vertex currentV) {
+    private void findMinLens (Vertex currentV) {
        
-	   List<vertex> neighbors = getAdjacents (currentV);     // Get the neighboring vertices of the current vertex.
+	   List<Vertex> neighbors = getAdjacents (currentV);     // Get the neighboring vertices of the current vertex.
         
 		// Loop through all the neighbors, reachable unxeplored from currentV.
-		for (vertex v : neighbors) {
+		for (Vertex v : neighbors) {
 			//relaxation step for each vertex in the neighboring vertices
 			//if a shorter path is found, it is added
             
@@ -88,13 +88,13 @@ public class Dijkstra {
 		@param vertex v
 		@return int weight of edge
 	**/
-    private int getEdgeLen (vertex currentV, vertex v) {
+    private int getEdgeLen (Vertex currentV, Vertex v) {
         /*
            Loop through all edges in the edge hash set,
            find the current edge and return its associated
            weight.
          */
-		for (edge e : edges) {
+		for (Edge e : edges) {
             if (e.getBeginLocation ().equals (currentV) && e.getEndLocation ().equals (v)) {
                 return e.getWeightofEdge ();
             }
@@ -108,9 +108,9 @@ public class Dijkstra {
 		@param vertex currentV
 		@return List<vertex> an adjacency list of vertices
 	**/
-    private List<vertex> getAdjacents (vertex currentV) {
-        List<vertex> neighbors = new ArrayList<vertex> ();
-        for (edge e : edges) {
+    private List<Vertex> getAdjacents (Vertex currentV) {
+        List<Vertex> neighbors = new ArrayList<vertex> ();
+        for (Edge e : edges) {
             if (e.getBeginLocation ().equals (currentV) && !isExplored (e.getEndLocation ())) {
                 neighbors.add (e.getEndLocation ());
             }
@@ -124,14 +124,14 @@ public class Dijkstra {
 		@param Set<vertex> vertices a set of vertices (Hash Set) to be searched
 		@return vertex min the minimum length (weight) vertex in the set
 	**/
-    private vertex findMinV (Set<vertex> vertices) {
-        vertex min = null;  // Initialize minimum.
+    private Vertex findMinV (Set<Vertex> vertices) {
+        Vertex min = null;  // Initialize minimum.
         /*
            Loop through all vertices.
            Update minimum as you go (if smaller length is found)
            and return min.
          */
-		for (vertex v : vertices) {
+		for (Vertex v : vertices) {
             if (min == null) {
                 min = v;
             } else {
@@ -150,7 +150,7 @@ public class Dijkstra {
 		@param vertex v
 		@return boolean true/false 
 	**/
-    private boolean isExplored (vertex v) {
+    private boolean isExplored (Vertex v) {
         return explored.contains (v);
     }
 
@@ -159,7 +159,7 @@ public class Dijkstra {
 		@param vertex target
 		@return int len the length (weight) of smallest value or null if no length
 	**/
-    private int getLen (vertex target) {
+    private int getLen (Vertex target) {
         Integer len = length.get (target);  // Get length of the input vertex.
         
 		//if the input vertex length is null, return positive infinity
@@ -182,11 +182,11 @@ public class Dijkstra {
 		@param vertex v the source vertex
 		@return LinkedList<vertex> the vertices in the shortest path
 	**/
-    public LinkedList<vertex> getSPath (vertex v) {
+    public LinkedList<Vertex> getSPath (Vertex v) {
 		
 		// Create a linked list of vertices in the shortest path.
-        LinkedList<vertex> shortestP = new LinkedList<vertex>();
-        vertex leg = v;             // Each leg in the path, to be updated.
+        LinkedList<Vertex> shortestP = new LinkedList<Vertex>();
+        Vertex leg = v;             // Each leg in the path, to be updated.
 		StringBuilder SB = new StringBuilder ();
         
 		// If the shortest path does not exist
@@ -213,7 +213,7 @@ public class Dijkstra {
          */
         Collections.reverse (shortestP);
 		
-		for (vertex eachVertex : shortestP)
+		for (Vertex eachVertex : shortestP)
 		{
 			SB.append (eachVertex.getDolphinName ());
 		}

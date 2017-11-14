@@ -4,8 +4,8 @@ This class will create the edges of the graph.
 
 public class Edge {
   private final String dolphinId;
-  private final Vertex location;
-  private final Vertex origin;
+  private final Vertex endLocation;
+  private final Vertex beginLocation;
   private final int weightOfEdge;
 
   /**
@@ -34,7 +34,7 @@ public class Edge {
   This get method will get the end of the edge's location.
   @return dolphinName: This will return the end of the edge location.
   */
-  public String getEndLocation () {
+  public Vertex getEndLocation () {
     return endLocation;
   }
 
@@ -42,7 +42,7 @@ public class Edge {
   This get method will get the beginning of the edge location.
   @return dolphinName: This will return where the beginning of the edge location.
   */
-  public String getBeginLocation () {
+  public Vertex getBeginLocation () {
     return beginLocation;
   }
 
@@ -50,7 +50,7 @@ public class Edge {
   This get method will get the weight of the edge.
   @return weightOfEdge: This will return the weight of the edge.
   */
-  public String getWeighofEdge () {
+  public int getWeightofEdge () {
     return weightOfEdge;
   }
 
