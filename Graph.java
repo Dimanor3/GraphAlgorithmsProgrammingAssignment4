@@ -29,3 +29,4 @@ public class Graph {
   public int numEdges () {
 	  return edgiesG.size ();
   }
+}

@@ -70,8 +70,11 @@ public class GAPA4 {
 	public static void main (String[] args) {
 		String gapa4ListString = "";
 
+        // Used to get user input.
         Scanner input = new Scanner (System.in);
 
+        // Determines which algorithm the user choose,
+        // it's for printing purposes.
         int whichAlgorithm = -1;
 
 		// Takes the DNA Strands to have LCS ran on it.
@@ -88,6 +91,16 @@ public class GAPA4 {
 		// Gets access to the LCS class.
 		GAPA4 gapa4Access = new GAPA4 ();
 
+        // Gets access to the Dijkstra class.
+        Dijkstra dijkstraAlgo = new Dijkstra ();
+        
+        // Gets access to the FW class.
+        FW floydWarshallAlgo = new FW ();
+
+        // Gets access to the graph class.
+        Graph graph = new Graph ();
+        
+        // Instantiates start, end and totalTime.
         long start = 0, end = 0, totalTime = 0;
 
 		// Attempts to open selected file(s).
@@ -131,6 +144,8 @@ public class GAPA4 {
     	        	// Gets the starting time of findLCS.
 	            	start = System.nanoTime ();
 
+                    // Completes the Dijkstra's algorithm.
+                    dijkstraAlgo.doDijkstra ();
 
             		// Gets the ending time of findLCS.
             		end = System.nanoTime ();
