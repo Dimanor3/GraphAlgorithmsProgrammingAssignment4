@@ -5,32 +5,27 @@ import java.util.*;
 This class will vertices of the graph.
 */
 
-public class Graph{
+public class Graph {
   private final List<Vertex> verticesG;
   private final List<Edge> edgiesG;
 
-  public Graph(List<Vertex> verticesG, List<Edge> edgiesG)
-  {
+  public Graph (List<Vertex> verticesG, List<Edge> edgiesG) {
     this.verticesG = verticesG;
     this.edgiesG = edgiesG;
   }
 
-  public List<Vertex> getVerticesG()
-  {
+  public List<Vertex> getVerticesG () {
     return verticesG;
   }
 
-  public List<Edge> getEdgiesG()
-  {
+  public List<Edge> getEdgiesG () {
     return edgiesG;
   }
   
-  public int numVertices()
-  {
-	  return verticesG.size();
+  public int numVertices () {
+	  return verticesG.size ();
   }
   
-  public int numEdges()
-  {
-	  return edgiesG.size();
+  public int numEdges () {
+	  return edgiesG.size ();
   }
