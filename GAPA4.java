@@ -72,6 +72,8 @@ public class GAPA4 {
 
         Scanner input = new Scanner (System.in);
 
+        int whichAlgorithm = -1;
+
 		// Takes the DNA Strands to have LCS ran on it.
 		ArrayList<String> gapa4List = new ArrayList<String> ();
 
@@ -109,7 +111,7 @@ public class GAPA4 {
                 System.out.println ("What do you want to do?");
                 System.out.println ("1. Graph");
                 System.out.println ("2. Dijkstra");
-                System.out.println ("3. Kruskal");
+                System.out.println ("3. Floyd-Warshall");
                 System.out.println ("4. Print");
                 System.out.println ("5. Performance");
                 System.out.println ("6. Quit");
@@ -124,6 +126,8 @@ public class GAPA4 {
                     break;
 
                 case 2:
+                    whichAlgorithm = 1;
+                    
     	        	// Gets the starting time of findLCS.
 	            	start = System.nanoTime ();
 
@@ -138,6 +142,8 @@ public class GAPA4 {
                     break;
 
                 case 3:
+                    whichAlgorithm = 2;
+
             		// Gets the starting time of findLCS.
             		start = System.nanoTime ();
 
@@ -152,9 +158,19 @@ public class GAPA4 {
                     break;
 
                 case 4:
+                    if (whichAlgorithm == 1) {
+                        
+                    } else {
+                        
+                    }
                     break;
 
                 case 5:
+                    if (whichAlgorithm == 1) {
+                        
+                    } else {
+                        
+                    }
                     break;
             }
         } while (choice != 6);
