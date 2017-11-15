@@ -3,65 +3,66 @@ This class will vertices of the graph.
 */
 
 public class Vertex {
-  final private String dolphinId;
-  final private String dolphinName;
 
-  public Vertex (String dolphinId, String dolphinName) {
+  //variable declaration
+  private String dolphinName;
+  private int dolphinId;
+  private Edge edgies;
+  private Vertex nextV;
+  private boolean touched;
+  private boolean finished;
+  private double cost;
+
+  /**
+  Overloaded Constructor
+  */
+  public Vertex(int dolphinId, String dolphinName)
+  {
     this.dolphinId = dolphinId;
     this.dolphinName = dolphinName;
   }
+  /**
+  Will create the adjacency list for the vertex using the specified edge.
+  @param Edge edgiesG: will hold the edge.
+  */
+  public void addToAdjacencyList(Edge edgiesG){
+    edgiesG.next = edgies;
+    edgies = edgiesG;
+  }
 
   /**
-  This get method will get the dolphin's name.
-  @return dolphinName: This will return the dolphin's name.
+  This toString method will show the representation of the vertex.
+  @return String create: returns the string of vertexes with their edges.
   */
-  public String getDolphinName () {
+  public String toString(){
+    String create = "vertex " + dolphinId + dolphinName + ":\n";
+    Edge anotherEdge = edgies;
+
+    //will go through the edges and add a string of edges each time.
+    while(anotherEdge != null){
+      create += "\tedge to " + anotherEdge.endLocation.dolphinId;
+      anotherEdge = anotherEdge.nextEdge;
+    }
+    return create;
+  }
+
+  /**
+  String method to get the dolphinName.
+  @return String dolphinName: Name of Dolphin
+  */
+  public String getDolphinName()
+  {
+    //returns the dolphin name
     return dolphinName;
   }
 
   /**
-  This get method will get the dolphin's ID.
-  @return dolphinId: This will return the dolphin's ID.
+  String method to get the dolphinId
+  @return String dolphinId: Id of the Dolphin
   */
-
-  public boolean equals (Object vertex) {
-    if (this == vertex) {
-      return true;
-    }
-
-    if (vertex == null) {
-      return false;
-    }
-
-    if (getClass () != vertex.getClass ()) {
-      return false;
-    }
-
-    Vertex newVertex = (Vertex) vertex;
-    
-    {
-      if (dolphinId == null) {
-        return false;
-      }
-
-      else if (!dolphinId.equals (newVertex.dolphinId)) {
-        return false;
-      }
-
-      return true;
-    }
-  }
-
-  public String getDolphinId () {
+  public String getDolphinId()
+  {
+    //returns the dolphin id
     return dolphinId;
-  }
-
-  public int makeVertex () {
-    int finalNumber = 1;
-    int number = 31;
-
-    number = number * finalNumber + ((dolphinId == null) ? 0 : id.makeVertex ());
-
-    return number;
   }
 }
