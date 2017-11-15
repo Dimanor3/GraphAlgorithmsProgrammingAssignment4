@@ -1,0 +1,31 @@
+GRAPH:
+getGraphVertex(String astroId):
+Will return the vertex that is specified by a certain astroId.
+
+addGraphVertex(String astroId):
+Will add the vertex of the certain astroId.
+
+addGraphEdge(String startLocation, String endLocation, double value):
+Will add the edge between the specifics start and vertices and add to the adjacency list.
+
+toString():
+Will create the view of the graph using the vertices.
+
+getAstroInformation(String astroFileName)
+Used to get the information of the file and creates the edges and vertices.
+- Still don’t know how to fully use the GML parser or how to implement as it is really only for C++.
+
+EDGE:
+Just creates the edges.
+
+VERTEX:
+addAstroToAdjacencyList(Edge edgiesG):
+Will create the adjacency list for the edges created.
+
+toString():
+Will show the representation of the vertexes. 
+
+String pathAstroString():
+Will return the string that will specify the path of the spanning tree from its root. Can use to print out the shortest path for Dijkstra’s algorithm if called.
+
+
