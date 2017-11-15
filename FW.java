@@ -14,7 +14,7 @@ public class FW {
 	private final int POSITIVE_INF = Integer.MAX_VALUE;
 	
 	public void FW (Graph G)	{
-		vertices = G.getVerticesG ();
+		vertices = G.getGraphVertex ();
 		edges = G.getEdgiesG ();
 		numV = vertices.size ();
 		
@@ -60,7 +60,7 @@ public class FW {
 	}
 	
 	public List<Vertex> getPath (int i, int j) {
-		List<Vertex> path = new ArrayList<Vertex> ();
+		ArrayList<Vertex> path = new ArrayList<Vertex> ();
 		
 		getPath (i, nextMatrix[i][j]);
 		path.add(vertices.get (nextMatrix[i][j]));
