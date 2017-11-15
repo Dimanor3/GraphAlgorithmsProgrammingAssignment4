@@ -5,27 +5,29 @@ This class will vertices of the graph.
 public class Vertex {
 
   //variable declaration
-  private String dolphinName;
-  private int dolphinId;
+  private String astroName;
+  private int astroId;
   private Edge edgies;
   private Vertex nextV;
-  private boolean touched;
-  private boolean finished;
-  private double cost;
+  //private boolean touched;
+  //private boolean finished;
+  private double value;
+  private Vertex astroP;
 
   /**
   Overloaded Constructor
   */
-  public Vertex(int dolphinId, String dolphinName)
+  public Vertex(int astroId)
   {
-    this.dolphinId = dolphinId;
-    this.dolphinName = dolphinName;
+    this.astroId = astroId;
+    this.astroName = astroName;
+    value = Double.POSITIVE_INFINITY;
   }
   /**
   Will create the adjacency list for the vertex using the specified edge.
   @param Edge edgiesG: will hold the edge.
   */
-  public void addToAdjacencyList(Edge edgiesG){
+  public void addAstroToAdjacencyList(Edge edgiesG){
     edgiesG.next = edgies;
     edgies = edgiesG;
   }
@@ -35,34 +37,53 @@ public class Vertex {
   @return String create: returns the string of vertexes with their edges.
   */
   public String toString(){
-    String create = "vertex " + dolphinId + dolphinName + ":\n";
+    String create = "vertex " + astroId + astroName + ":\n";
     Edge anotherEdge = edgies;
 
     //will go through the edges and add a string of edges each time.
     while(anotherEdge != null){
-      create += "\tedge to " + anotherEdge.endLocation.dolphinId;
+      create += "\tedge to " + anotherEdge.endLocation.astroId;
+      create += "(value = ) " + anotherEdge.value + ")\n";
       anotherEdge = anotherEdge.nextEdge;
+
     }
     return create;
   }
 
   /**
-  String method to get the dolphinName.
-  @return String dolphinName: Name of Dolphin
+  This will return the string that will specify the path of the spanning tree from
+  the root. Will return the shortest path when called for Dijkstra's algorithm.
   */
-  public String getDolphinName()
+  public String pathAstroString()
   {
-    //returns the dolphin name
-    return dolphinName;
+      String astroStr;
+      if(astroP == null){
+        astroStr = astroId;
+      }
+      else {
+        astroStr = astroP.pathAstroString() + "->" + astroId;
+      }
+
+      return astroStr;
   }
 
   /**
-  String method to get the dolphinId
-  @return String dolphinId: Id of the Dolphin
+  String method to get the astroName.
+  @return String astroName: Name of astro
   */
-  public String getDolphinId()
+  public String getAstroName()
   {
-    //returns the dolphin id
-    return dolphinId;
+    //returns the astro name
+    return astroName;
+  }
+  
+  /**
+  String method to get the astroId
+  @return String astroId: Id of the astro
+  */
+  public String getAstroId()
+  {
+    //returns the astro id
+    return astroId;
   }
 }

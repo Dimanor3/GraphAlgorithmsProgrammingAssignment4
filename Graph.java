@@ -12,25 +12,25 @@ public class Graph {
   private Vertex verticesG;
 
   /**
-  Will return the vertex that is specified by a certain dolphinId
-  @param String dolphinId: will hold the dolphinId
+  Will return the vertex that is specified by a certain astroId
+  @param String astroId: will hold the astroId
   @return Vertex newVerticesG: will return the specific vertex called.
   */
-  private Vertex getGraphVertex(String dolphinId){
+  private Vertex getGraphVertex(String astroId){
     Vertex newVerticesG = verticesG;
-    while(newVerticesG != null && !newVerticesG.dolphinId.equals(dolphinId)){
+    while(newVerticesG != null && !newVerticesG.astroId.equals(astroId)){
       newVerticesG = newVerticesG.nextV;
     }
     return newVerticesG;
   }
 
   /**
-  This method will add the vertex of the certain dolphinId.
-  @param String dolphinId: will hold the dolphinId
+  This method will add the vertex of the certain astroId.
+  @param String astroId: will hold the astroId
   @return Vertex newVerticesG: will return the specific vertex added.
   */
-  private Vertex addGraphVertex(String dolphinId){
-    Vertex newVerticesG = new Vertex(dolphinId);
+  private Vertex addGraphVertex(String astroId){
+    Vertex newVerticesG = new Vertex(astroId);
 
     //will add to the beginning of the list.
     newVerticesG.nextV = verticesG;
@@ -43,9 +43,9 @@ public class Graph {
   This method will add the edge between the specific start and end vertices and will be
   stored in the adjacency list.
   */
-  public void addGraphEdge(String startLocation, String endLocation){
+  public void addGraphEdge(String startLocation, String endLocation, double value){
     //creation of first node and if statement for adding the node into the graph.
-    Vertex firstNode = getGraphVertex(String dolphinId);
+    Vertex firstNode = getGraphVertex(String astroId);
     if(firstNode == null){
       firstNode = addGraphVertex(startLocation);
     }
@@ -57,7 +57,7 @@ public class Graph {
     }
 
     //creates a new edge
-    Edge edgiesG = new Edge(firstNode, lastNode);
+    Edge edgiesG = new Edge(firstNode, lastNode, value);
     firstNode.addToAdjacencyList(edgiesG);
 
     }
@@ -76,5 +76,32 @@ public class Graph {
 
       }
       return graphCreate;
+    }
+
+    public void getAstroInformation(String astroFileName){
+      String astroString = " ";
+
+      try{
+        Scanner astroFile = new Scanner(new File(astroFileName));
+
+        while(astroFile.hasNextLine()){
+          astroString = astroFile.nextLine();
+          Scanner astroLine = new Scanner(astroString);
+
+          String startLocation = line.next();
+          String endLocation = line.next();
+          double value = line.nextDouble();
+          addEdge(startLocation, endLocation, value);
+        }
+        catch (IOException except){
+          System.out.println("Error Finding: " + astroFileName);
+          System.exit(1);
+        }
+        catch (NoSuchElementException except)
+        {
+          System.out.println("invalid input for the line " + astroString);
+          System.exit(1);
+        }
+      }
     }
 }
