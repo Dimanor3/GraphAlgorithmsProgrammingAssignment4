@@ -86,4 +86,9 @@ public class Vertex {
     //returns the astro id
     return astroId;
   }
+  
+  public Vertex getNextV()
+  {
+	  return nextV;
+  }
 }

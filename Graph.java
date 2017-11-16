@@ -19,7 +19,7 @@ public class Graph {
   private Vertex getGraphVertex(String astroId){
     Vertex newVerticesG = verticesG;
     while(newVerticesG != null && !newVerticesG.astroId.equals(astroId)){
-      newVerticesG = newVerticesG.nextV;
+      newVerticesG = newVerticesG.getnextV();
     }
     return newVerticesG;
   }
