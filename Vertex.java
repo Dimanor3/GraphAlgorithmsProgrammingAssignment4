@@ -1,94 +1,67 @@
-/**
-This class will vertices of the graph.
-*/
-
+/*
+ * A class to hold vertex objects for a graph
+ */
 public class Vertex {
+    final private String vertexID;
+    final private String vertexName;
 
-  //variable declaration
-  private String astroName;
-  private String astroId;
-  private Edge edgies;
-  private Vertex nextV;
-  //private boolean touched;
-  //private boolean finished;
-  private double value;
-  private Vertex astroP;
-
-  /**
-  Overloaded Constructor
-  */
-  public Vertex(String astroId)
-  {
-    this.astroId = astroId;
-    this.astroName = astroName;
-    value = Double.POSITIVE_INFINITY;
-  }
-  /**
-  Will create the adjacency list for the vertex using the specified edge.
-  @param Edge edgiesG: will hold the edge.
-  */
-  public void addAstroToAdjacencyList(Edge edgiesG){
-    edgiesG.nextEdge = edgies;
-    edgies = edgiesG;
-  }
-
-  /**
-  This toString method will show the representation of the vertex.
-  @return String create: returns the string of vertexes with their edges.
-  */
-  public String toString(){
-    String create = "vertex " + astroId + astroName + ":\n";
-    Edge anotherEdge = edgies;
-
-    //will go through the edges and add a string of edges each time.
-    while(anotherEdge != null){
-      create += "\tedge to " + anotherEdge.endLocation.astroId;
-      create += "(value = ) " + anotherEdge.value + ")\n";
-      anotherEdge = anotherEdge.nextEdge;
-
+    /**
+     * Constructor
+     * @param String vertexID
+     * @param String vertexName
+     */
+    public Vertex(String vertexID, String vertexName) {
+        this.vertexID = vertexID;
+        this.vertexName = vertexName;
     }
-    return create;
-  }
+    
+    /**
+     * A get method to return the vertex id
+     * @return String vertexID
+     */
+    public String getVertexId() {
+        return vertexID;
+    }
 
-  /**
-  This will return the string that will specify the path of the spanning tree from
-  the root. Will return the shortest path when called for Dijkstra's algorithm.
-  */
-  public String pathAstroString()
-  {
-      String astroStr;
-      if(astroP == null){
-        astroStr = astroId;
-      }
-      else {
-        astroStr = astroP.pathAstroString() + "->" + astroId;
-      }
+    /**
+     * A get method to return the vertex name
+     * @return String vertexName
+     */
+    public String getVertexName() {
+        return vertexName;
+    }
 
-      return astroStr;
-  }
+    
+    /**
+     * An overridden equals method to determine if two vertices are the same object
+     * (and therefore the same vertex)
+     * @param Object otherV the vertex to be compared with this
+     * @return boolean true/false
+     */
+    @Override
+    public boolean equals(Object otherV) {
+        if (this == otherV) //if the same object (thereby vertex)
+            return true;
+        if (otherV == null) //if the newOther vertex is null
+            return false;
+        if (this.getClass() != otherV.getClass()) //if the two are not the same type of object
+            return false;
+        Vertex newOther = (Vertex) otherV; //cast to Vertex to compare as vertices
+        if (vertexID == null) { //if trying to compare to a null vertex
+            if (newOther.vertexID != null)
+                return false;
+        } else if (!vertexID.equals(newOther.vertexID)) //compare by ids
+            return false;
+        return true;
+    }
 
-  /**
-  String method to get the astroName.
-  @return String astroName: Name of astro
-  */
-  public String getAstroName()
-  {
-    //returns the astro name
-    return astroName;
-  }
+    /**
+     * Overridden toString method
+     * @return String a string representing the vertex (using name)
+     */
+    @Override
+    public String toString() {
+        return vertexName;
+    }
 
-  /**
-  String method to get the astroId
-  @return String astroId: Id of the astro
-  */
-  public String getAstroId()
-  {
-    //returns the astro id
-    return astroId;
-  }
-  
-  public Vertex getNextV()
-  {
-	  return nextV;
-  }
 }

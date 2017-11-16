@@ -1,11 +1,5 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Dijkstra {
     private List<Vertex> vertices;                  // Vertices.
@@ -215,7 +209,7 @@ public class Dijkstra {
 		
 		for (Vertex eachVertex : shortestP)
 		{
-			SB.append (eachVertex.getDolphinName ());
+			SB.append (eachVertex.getVertexName ());
 		}
 		
 		stringSPath = SB.toString ();
