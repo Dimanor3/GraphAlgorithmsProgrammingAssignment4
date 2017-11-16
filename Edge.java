@@ -34,6 +34,11 @@ public class Edge {
   {
     return value;
   }
+  
+  public Edge getNextEdge()
+  {
+	  return nextEdge;
+  }
 
 
   }
