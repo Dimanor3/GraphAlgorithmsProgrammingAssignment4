@@ -5,10 +5,10 @@ This class will create the edges of the graph.
 public class Edge {
 
   //variable declaration
-  private Vertex startLocation;
-  private Vertex endLocation;
-  private Edge nextEdge;
-  private double value;
+  public Vertex startLocation;
+  public Vertex endLocation;
+  public Edge nextEdge;
+  public double value;
 
   /**
 
@@ -30,7 +30,7 @@ public class Edge {
     return endLocation;
   }
 
-  public long getValue()
+  public double getValue()
   {
     return value;
   }

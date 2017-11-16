@@ -6,7 +6,7 @@ public class Vertex {
 
   //variable declaration
   private String astroName;
-  private int astroId;
+  private String astroId;
   private Edge edgies;
   private Vertex nextV;
   //private boolean touched;
@@ -17,7 +17,7 @@ public class Vertex {
   /**
   Overloaded Constructor
   */
-  public Vertex(int astroId)
+  public Vertex(String astroId)
   {
     this.astroId = astroId;
     this.astroName = astroName;
@@ -28,7 +28,7 @@ public class Vertex {
   @param Edge edgiesG: will hold the edge.
   */
   public void addAstroToAdjacencyList(Edge edgiesG){
-    edgiesG.next = edgies;
+    edgiesG.nextEdge = edgies;
     edgies = edgiesG;
   }
 
@@ -76,7 +76,7 @@ public class Vertex {
     //returns the astro name
     return astroName;
   }
-  
+
   /**
   String method to get the astroId
   @return String astroId: Id of the astro

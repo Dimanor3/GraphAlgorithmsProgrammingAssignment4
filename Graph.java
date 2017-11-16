@@ -45,7 +45,7 @@ public class Graph {
   */
   public void addGraphEdge(String startLocation, String endLocation, double value){
     //creation of first node and if statement for adding the node into the graph.
-    Vertex firstNode = getGraphVertex(String astroId);
+    Vertex firstNode = getGraphVertex(astroId);
     if(firstNode == null){
       firstNode = addGraphVertex(startLocation);
     }
@@ -92,12 +92,10 @@ public class Graph {
           String endLocation = line.next();
           double value = line.nextDouble();
           addEdge(startLocation, endLocation, value);
-        }
-        catch (IOException except){
+        }catch (IOException except){
           System.out.println("Error Finding: " + astroFileName);
           System.exit(1);
-        }
-        catch (NoSuchElementException except)
+        }catch (NoSuchElementException except)
         {
           System.out.println("invalid input for the line " + astroString);
           System.exit(1);
