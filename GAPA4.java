@@ -125,9 +125,17 @@ public class GAPA4 {
 		// Used to determine if the graph
 		// has been created.
 		Boolean graphCreated = false;
+		
+		Boolean firstRun = true;
 
         do {
             do {
+				if (!firstRun && (choice <= 0 || choice >= 7)) {
+					System.out.println ("\nThat's not an option, please try again :)\n");
+				}
+				
+				firstRun = false;
+				
                 System.out.println ("What do you want to do?");
                 System.out.println ("1. Graph");
                 System.out.println ("2. Dijkstra");
