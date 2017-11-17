@@ -17,7 +17,7 @@ import java.util.*;
 
 	Afterwards it returns the arraylist to main.
 */
-public class readfile {
+public class ReadFile {
 	// This scanner will be used to open, read and close the choosen file.
 	private Scanner read;
 

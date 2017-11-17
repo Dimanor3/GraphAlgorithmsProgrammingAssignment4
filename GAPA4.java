@@ -99,8 +99,8 @@ public class GAPA4 {
 		Graph graphD = null;
 		Graph graphF = null;
 
-		// Gets access to the readfile class.
-		readfile rF = new readfile ();
+		// Gets access to the ReadFile class.
+		ReadFile rF = new ReadFile ();
         
         // Instantiates start, end and totalTime.
         long start = 0, end = 0, totalTimeDijkstra = 0, totalTimeFW = 0;
@@ -135,9 +135,12 @@ public class GAPA4 {
             do {
 				if (!firstRun && (choice <= 0 || choice >= 7)) {
 					System.out.println ("\nThat's not an option, please try again :)\n");
+				} 
+
+				if (firstRun) {
+					firstRun = false;
+					System.out.println ("");
 				}
-				
-				firstRun = false;
 				
                 System.out.println ("What do you want to do?");
                 System.out.println ("1. Graph");
