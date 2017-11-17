@@ -18,7 +18,18 @@
 	Breakdown of Key Functions
 	--------------------------
 
+	Graph creates two lists of vertexes and edges then plots them all into the graph.
 	
+	Dijkstra runs the Dijkstra algorithm and checks the length of time it took to run.
+	
+	Floyd-Warshall runs the Floyd-Warshall algorithm and checks the length of time it took
+	to run.
+	
+	Print prints out the results of either algorithm.
+	
+	Performance prints out the amount of time it took to run the algorithm.
+	
+	Quit quits the program.
 
 	Our Compiler
 	------------
@@ -49,12 +60,10 @@
 	Data Structure Design Description
 	---------------------------------
 
-	The data structure we choose to use was an arraylist, this is because arraylists are
-	scalable unlike their array counterparts. This is very convenient for this project
-	since the list of numbers we could be given can end up being any size.
-	
-	The data structure used to implement the LCS table for the algorithm was a two dimensional
-	array of characters.
+	The data structure we choose to use was both List and arraylist, this is because they
+	both are scalable unlike some other data structures, "cough" "cough" array "cough"
+	"cough". This is very convenient for this project since many things are huge in size
+	we won't have to worry much about presetting the sizes.
 */
 
 import java.io.*;
@@ -204,9 +213,9 @@ public class GAPA4 {
 				// algorithm.
                 case 4:
                     if (whichAlgorithm == 1) {
-                        System.out.println ("\n" + dijkstraAlgo.getSPath () + "\n");
+                        System.out.println ("\nDijkstra's result:\n" + dijkstraAlgo.getSPath () + "\n");
                     } else if (whichAlgorithm == 2) {
-                        System.out.println ("\n" + floydWarshallAlgo.getSPairsPath () + "\n");
+                        System.out.println ("\nFloyd-Warshall's result:\n" + floydWarshallAlgo.getSPairsPath () + "\n");
                     } else {
 						System.out.println ("\nNo algorithms have been called, please call one!\n");
 					}
