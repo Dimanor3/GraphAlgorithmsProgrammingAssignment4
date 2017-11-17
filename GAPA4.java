@@ -86,8 +86,8 @@ public class GAPA4 {
 
 		// Creates an ArrayList of Edges and Vertexes to
 		// fed into the graph.
-		List<Edge> edges;
-		List<Vertex> vertexes;
+		List<Edge> edges = new ArrayList<Edge> ();
+		List<Vertex> vertexes = new ArrayList<Vertex> ();
 		
 		// Gets access to the Dijkstra class.
 		Dijkstra dijkstraAlgo = null;
@@ -159,6 +159,8 @@ public class GAPA4 {
 						graphD = new Graph (vertexes, edges);
 						graphF = new Graph (vertexes, edges);
 						System.out.println ("\nThe graph has been created!\n");
+						
+						graphCreated = true;
 					} else {
 						System.out.println ("\nThe graph has already been created\n");
 					}
@@ -166,46 +168,56 @@ public class GAPA4 {
 
 				// Runs Dijkstra's algorithm.
                 case 2:
-                    whichAlgorithm = 1;
+					if (graphCreated) {
+						whichAlgorithm = 1;
 
-					// Gets access to the Dijkstra class.
-					dijkstraAlgo = new Dijkstra (graphD);
-                    
-    	        	// Gets the starting time of findLCS.
-	            	start = System.nanoTime ();
+						// Gets access to the Dijkstra class.
+						dijkstraAlgo = new Dijkstra (graphD);
+						
+						// Gets the starting time of findLCS.
+						start = System.nanoTime ();
 
-                    // Completes the Dijkstra's algorithm.
-                    dijkstraAlgo.doDijkstra (vertexes.get (0));
+						// Completes the Dijkstra's algorithm.
+						dijkstraAlgo.doDijkstra (vertexes.get (0));
 
-            		// Gets the ending time of findLCS.
-            		end = System.nanoTime ();
+						// Gets the ending time of findLCS.
+						end = System.nanoTime ();
 
-            		// Gets the total time that findLCS ran.
-            		totalTimeDijkstra = end - start;
+						// Gets the total time that findLCS ran.
+						totalTimeDijkstra = end - start;
 
-                    System.out.println ("\nDijkstra has been performed!\n");
+						System.out.println ("\nDijkstra has been performed!\n");
+					} else {
+						System.out.println ("\nThe graph has not been built yet, please build it before calling me!\n");
+					}
+					
                     break;
 
 				// Runs Floyd-Warshall's algorithm.
                 case 3:
-                    whichAlgorithm = 2;
+                    if (graphCreated) {
+						whichAlgorithm = 2;
+						
+						// Gets access to the FW class.
+						floydWarshallAlgo = new FW ();
+						floydWarshallAlgo.FW (graphF);
+
+						// Gets the starting time of findLCS.
+						start = System.nanoTime ();
+
+						floydWarshallAlgo.doFW ();
+
+						// Gets the ending time of findLCS.
+						end = System.nanoTime ();
+
+						// Gets the total time that findLCS ran.
+						totalTimeFW = end - start;
+
+						System.out.println ("\nFloyd-Warshall has been performed!\n");
+					} else {
+						System.out.println ("\nThe graph has not been built yet, please build it before calling me!\n");
+					}
 					
-					// Gets access to the FW class.
-					floydWarshallAlgo = new FW ();
-					floydWarshallAlgo.FW (graphF);
-
-            		// Gets the starting time of findLCS.
-            		start = System.nanoTime ();
-
-					floydWarshallAlgo.doFW ();
-
-            		// Gets the ending time of findLCS.
-            		end = System.nanoTime ();
-
-            		// Gets the total time that findLCS ran.
-            		totalTimeFW = end - start;
-
-                    System.out.println ("\nFloyd-Warshall has been performed!\n");
                     break;
 
 				// Prints out the results of either

@@ -174,7 +174,6 @@ public class Dijkstra {
 
     /**
 		Returns the shortest path, as a linked list of vertices in that path
-		@param vertex v the source vertex
 		@return LinkedList<vertex> the vertices in the shortest path
 	**/
     public String getSPath () {
