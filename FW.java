@@ -8,7 +8,7 @@ public class FW {
 	private List<Vertex> vertices; 							// List of graph vertices.
 	private List<Edge> edges; 								// List of graph edges.
 	private int numV; 										// Number of vertices in the graph.
-	private int[][] fwMatrix; 								// Matrix of weights used to carry out the floyd warshall algorithm.
+	private double[][] fwMatrix; 								// Matrix of weights used to carry out the floyd warshall algorithm.
 	private int[][] nextMatrix; 							// Matrix of indices used to carry out the floyd warshall.
 	private String shortestPaths; 							// All pairs shortest paths, in a string format for printability.
 	private final int POSITIVE_INF = Integer.MAX_VALUE;		// A large integer to represent positive infinity.
@@ -22,7 +22,7 @@ public class FW {
 		edges = G.getEdgiesG ();		// Extract edges from graph.
 		numV = vertices.size ();		// Get the number of vertices from the graph.
 		
-		fwMatrix = new int[numV][numV]; // Initialize square matrix size of number of vertices.
+		fwMatrix = new double[numV][numV]; // Initialize square matrix size of number of vertices.
 
 		for (int i = 0; i < numV; i++) { // Loop through matrix.
 			for (int j = 0; j < numV; j++) {
@@ -50,11 +50,11 @@ public class FW {
                     if (y == z)	{ // Every vertex has a path to itself, where weight is 0.
 						fwMatrix[y][z] = 0;
                     } else { // For all other edges where vertices are not the same.
-						int yz = fwMatrix[y][z]; // Set weights.
-                        int yx = fwMatrix[y][x];
-                        int xz = fwMatrix[x][z];
+						double yz = fwMatrix[y][z]; // Set weights.
+                        double yx = fwMatrix[y][x];
+                        double xz = fwMatrix[x][z];
                         // Compare using relaxation.
-                        int sum = (yx != POSITIVE_INF && xz != POSITIVE_INF) ? (yx + xz): POSITIVE_INF;
+                        double sum = (yx != POSITIVE_INF && xz != POSITIVE_INF) ? (yx + xz): POSITIVE_INF;
                         if (yz > sum) {
                             fwMatrix[y][z] = sum;
 							nextMatrix[y][z] = x; // Update next matrix.

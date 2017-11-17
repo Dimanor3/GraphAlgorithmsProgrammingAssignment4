@@ -7,7 +7,7 @@ public class Dijkstra {
     private Set<Vertex> explored;                   // Explored vertices.
     private Set<Vertex> unexplored;                 // Unexplored vertices.
     private Map<Vertex, Vertex> parent;             // Predecessors of path vertices.
-    private Map<Vertex, Integer> length;            // Weight associated with path.
+    private Map<Vertex, Double> length;            // Weight associated with path.
 	private String stringSPath;
 
 	/**
@@ -31,9 +31,9 @@ public class Dijkstra {
     public void doDijkstra (Vertex s) {
 		explored = new HashSet<Vertex> ();          // Hash Set of vertices that have been discovered.
         unexplored = new HashSet<Vertex> ();        // Hash set of vertices not yet discovered.
-        length = new HashMap<Vertex, Integer> ();   // Hash Map representing the length associated with each vertex.
+        length = new HashMap<Vertex, Double> ();   // Hash Map representing the length associated with each vertex.
         parent = new HashMap<Vertex, Vertex> ();    // Hash map to keep track of the predessors.
-        length.put (s, 0);                          // Source vertex has an initial length of zero.
+        length.put (s, 0.0);                          // Source vertex has an initial length of zero.
         unexplored.add (s);                         // s gets added to the discovered vertices.
         
         /*
@@ -79,9 +79,9 @@ public class Dijkstra {
 		Gets the length of edge and returns
 		@param vertex currentV
 		@param vertex v
-		@return int weight of edge
+		@return double weight of edge
 	**/
-    private int getEdgeLen (Vertex currentV, Vertex v) {
+    private double getEdgeLen (Vertex currentV, Vertex v) {
         /*
            Loop through all edges in the edge hash set,
            find the current edge and return its associated
@@ -150,10 +150,10 @@ public class Dijkstra {
 	/**
 		Finds and returns the length (weight) of input vertex
 		@param vertex target
-		@return int len the length (weight) of smallest value or null if no length
+		@return double len the length (weight) of smallest value or null if no length
 	**/
-    private int getLen (Vertex target) {
-        Integer len = length.get (target);  // Get length of the input vertex.
+    private double getLen (Vertex target) {
+        Double len = length.get (target);  // Get length of the input vertex.
         
 		//if the input vertex length is null, return positive infinity
 		//otherwise return the length of the input vertex
