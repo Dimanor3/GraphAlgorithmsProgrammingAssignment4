@@ -11,7 +11,7 @@
 	Program Design Description
 	--------------------------
 
-	For this we had 7 classes, GAPA4 (main), readFile, graph, edge, vertex, Dijkstra and
+	For this we had 7 classes, GAPA4 (main), ReadFile, graph, edge, vertex, Dijkstra and
 	Floyd-Warshall. With these 7 classes we went ahead and designed them to complete all
 	the required tasks, from setting up the graph to performing the instructed algorithm.
 
@@ -52,7 +52,7 @@
     Some issues we ran into was an odd duplication issue. Whenever we used two files,
     one of which was empty and another of which had content, the program reads the
     first file into the ArrayList twice. This issue was solved by clearing the unorderedlist
-    in between reads (within the readFile class.)
+    in between reads (within the ReadFile class.)
     
     An issue with this program is that it could be made even more space efficient. We did not
     attempt to do so, but future modifications could improve on this factor.
@@ -99,7 +99,7 @@ public class GAPA4 {
 		Graph graphD = null;
 		Graph graphF = null;
 
-		// Gets access to the ReadFile class.
+		// Gets access to the readfile class.
 		ReadFile rF = new ReadFile ();
         
         // Instantiates start, end and totalTime.
@@ -173,6 +173,13 @@ public class GAPA4 {
 						graphD = new Graph (vertexes, edges);
 						graphF = new Graph (vertexes, edges);
 						System.out.println ("\nThe graph has been created!\n");
+						
+						
+						//for testing purposes
+						for (int i = 0; i < vertexes.size(); i++)
+						{
+							System.out.println("vertex: " + vertexes.get(i).toString());
+						}
 						
 						graphCreated = true;
 					} else {
