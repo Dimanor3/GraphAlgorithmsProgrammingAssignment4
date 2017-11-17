@@ -23,7 +23,8 @@ public class FW {
 		numV = vertices.size ();		// Get the number of vertices from the graph.
 		
 		fwMatrix = new double[numV][numV]; // Initialize square matrix size of number of vertices.
-
+		nextMatrix = new int[numV][numV];
+		
 		for (int i = 0; i < numV; i++) { // Loop through matrix.
 			for (int j = 0; j < numV; j++) {
 				fwMatrix[i][j] = POSITIVE_INF; // Set all values to positive infinity.
