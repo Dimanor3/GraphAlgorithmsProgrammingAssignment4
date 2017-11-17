@@ -240,7 +240,7 @@ public class GAPA4 {
 				// algorithm.
                 case 4:
                     if (whichAlgorithm == 1) {
-                        System.out.println ("\nDijkstra's result:\n" + dijkstraAlgo.getSPath () + "\n");
+                        System.out.println ("\nDijkstra's result:\n" + dijkstraAlgo.getSPath (vertexes.get (10)) + "\n");
                     } else if (whichAlgorithm == 2) {
                         System.out.println ("\nFloyd-Warshall's result:\n" + floydWarshallAlgo.getSPairsPath () + "\n");
                     } else {

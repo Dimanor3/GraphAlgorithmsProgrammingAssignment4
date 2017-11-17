@@ -51,7 +51,6 @@ public class Dijkstra {
             unexplored.remove (currentV);
             findMinLens (currentV);
         }
-		
     }
 
 	/**
@@ -107,6 +106,7 @@ public class Dijkstra {
 	**/
     private List<Vertex> getAdjacents (Vertex currentV) {
         List<Vertex> neighbors = new ArrayList<Vertex> ();
+		
         for (Edge e : edges) {
             if (e.getBeginLocation ().equals (currentV) && !isExplored (e.getEndLocation ())) {
                 neighbors.add (e.getEndLocation ());
@@ -178,10 +178,10 @@ public class Dijkstra {
 		Returns the shortest path, as a linked list of vertices in that path
 		@return LinkedList<vertex> the vertices in the shortest path
 	**/
-    public String getSPath () {
+    public String getSPath (Vertex v) {
 		// Create a linked list of vertices in the shortest path.
         LinkedList<Vertex> shortestP = new LinkedList<Vertex> ();
-        Vertex leg = sourceV;             // Each leg in the path, to be updated.
+        Vertex leg = v;             // Each leg in the path, to be updated.
 		StringBuilder SB = new StringBuilder ();
         
 		// If the shortest path does not exist
