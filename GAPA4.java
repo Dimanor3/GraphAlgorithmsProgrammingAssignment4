@@ -193,7 +193,7 @@ public class GAPA4 {
 						start = System.nanoTime ();
 
 						// Completes the Dijkstra's algorithm.
-						dijkstraAlgo.doDijkstra (vertexes.get (0));
+						dijkstraAlgo.doDijkstra (vertexes.get (5500));
 
 						// Gets the ending time of findLCS.
 						end = System.nanoTime ();
@@ -240,7 +240,7 @@ public class GAPA4 {
 				// algorithm.
                 case 4:
                     if (whichAlgorithm == 1) {
-                        System.out.println ("\nDijkstra's result:\n" + dijkstraAlgo.getSPath (vertexes.get (10)) + "\n");
+                        System.out.println ("\nDijkstra's result:\n" + dijkstraAlgo.getSPath (vertexes.get (18)) + "\n");
                     } else if (whichAlgorithm == 2) {
                         System.out.println ("\nFloyd-Warshall's result:\n" + floydWarshallAlgo.getSPairsPath () + "\n");
                     } else {
