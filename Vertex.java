@@ -10,7 +10,7 @@ public class Vertex {
      * @param String vertexID
      * @param String vertexName
      */
-    public Vertex(String vertexID, String vertexName) {
+    public Vertex (String vertexID, String vertexName) {
         this.vertexID = vertexID;
         this.vertexName = vertexName;
     }
@@ -19,7 +19,7 @@ public class Vertex {
      * A get method to return the vertex id
      * @return String vertexID
      */
-    public String getVertexId() {
+    public String getVertexId () {
         return vertexID;
     }
 
@@ -27,7 +27,7 @@ public class Vertex {
      * A get method to return the vertex name
      * @return String vertexName
      */
-    public String getVertexName() {
+    public String getVertexName () {
         return vertexName;
     }
 
@@ -39,7 +39,7 @@ public class Vertex {
      * @return boolean true/false
      */
     @Override
-    public boolean equals(Object otherV) {
+    public boolean equals (Object otherV) {
         if (this == otherV) //if the same object (thereby vertex)
             return true;
         if (otherV == null) //if the newOther vertex is null
@@ -60,7 +60,7 @@ public class Vertex {
      * @return String a string representing the vertex (using name)
      */
     @Override
-    public String toString() {
+    public String toString () {
         return vertexName;
     }
 

@@ -14,7 +14,7 @@ public class Edge  {
      * @param Vertex endLoc
      * @param double edgeWeight
      */
-    public Edge(String edgeID, Vertex beginLoc, Vertex endLoc, double edgeWeight) {
+    public Edge (String edgeID, Vertex beginLoc, Vertex endLoc, double edgeWeight) {
         this.edgeID = edgeID;
         this.beginLoc = beginLoc;
         this.endLoc = endLoc;
@@ -25,7 +25,7 @@ public class Edge  {
      * get method to return the id number of the edge
      * @retun String edgeID
      */
-    public String getEdgeID() {
+    public String getEdgeID () {
         return edgeID;
     }
     
@@ -33,7 +33,7 @@ public class Edge  {
      * get method to return the vertex at the end of the edge
      * @return Vertex endLoc
      */
-    public Vertex getEndLocation() {
+    public Vertex getEndLocation () {
         return endLoc;
     }
 
@@ -41,7 +41,7 @@ public class Edge  {
      * get method to return the vertex at the start of the edge
      * @return Vertex beginLoc
      */
-    public Vertex getBeginLocation() {
+    public Vertex getBeginLocation () {
         return beginLoc;
     }
     
@@ -49,7 +49,7 @@ public class Edge  {
      * get method to return the weight of the edge
      * @return int edgeWeight
      */
-    public double getWeightofEdge() {
+    public double getWeightofEdge () {
         return edgeWeight;
     }
 
@@ -58,7 +58,7 @@ public class Edge  {
      * @return String a string form of the edge
      */
     @Override
-    public String toString() {
+    public String toString () {
         return beginLoc + " --> " + endLoc;
     }
 

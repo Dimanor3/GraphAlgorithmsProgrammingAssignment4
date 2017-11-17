@@ -12,7 +12,7 @@ public class Graph {
     * @param List<Vertex> verticesG a list of vertices in the graph
     * @param List<Edge> edgiesG a list of edges in the graph
     */
-    public Graph(List<Vertex> verticesG, List<Edge> edgiesG) {
+    public Graph (List<Vertex> verticesG, List<Edge> edgiesG) {
         this.verticesG = verticesG;
         this.edgiesG = edgiesG;
     }
@@ -21,7 +21,7 @@ public class Graph {
      * A get method to return the vertices in the graph
      * @return List<Vertex> verticesG a list of vertices in the graph
      */
-    public List<Vertex> getVerticesG() {
+    public List<Vertex> getVerticesG () {
         return verticesG;
     }
 
@@ -29,7 +29,7 @@ public class Graph {
      * A get method to return the edges in the graph
      * @return List<Edge> edgiesG a list of edges in the graph
      */
-    public List<Edge> getEdgiesG() {
+    public List<Edge> getEdgiesG () {
         return edgiesG;
     }
 
@@ -37,17 +37,17 @@ public class Graph {
      * A get method to return the number of vertices in the graph
      * @return int the number of vertices in the graph
      */
-    public int numV()
+    public int numV ()
     {
-    	return verticesG.size();
+    	return verticesG.size ();
     }
 
     /**
      * A get method to return the number of edges in the graph
      * @return int the number of edges in the graph
      */
-    public int numE()
+    public int numE ()
     {
-    	return edgiesG.size();
+    	return edgiesG.size ();
     }
 }
