@@ -175,7 +175,7 @@ public class GAPA4 {
 	            	start = System.nanoTime ();
 
                     // Completes the Dijkstra's algorithm.
-                    dijkstraAlgo.doDijkstra ();
+                    dijkstraAlgo.doDijkstra (vertexes.get (0));
 
             		// Gets the ending time of findLCS.
             		end = System.nanoTime ();
