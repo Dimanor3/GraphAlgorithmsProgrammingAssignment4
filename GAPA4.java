@@ -11,19 +11,14 @@
 	Program Design Description
 	--------------------------
 
-	For this we had 3 classes, all which were imported from the insertion sort homework.
-	With these 3 classes, we went ahead and modified them to both include findLCS as well
-    as fix any issues that the previous assignment had and add some new functionality.
+	For this we had 7 classes, GAPA4 (main), readFile, graph, edge, vertex, Dijkstra and
+	Floyd-Warshall. With these 7 classes we went ahead and designed them to complete all
+	the required tasks, from setting up the graph to performing the instructed algorithm.
 
-	Breakdown of Algorithm
-	----------------------
+	Breakdown of Key Functions
+	--------------------------
 
-	The longest common subsequence algorithm compares a table of characters, implemented as a
-	two dimensional array, and searches for character matches in the horizontal and vertical 
-	character intersection. It then traverses the table, moving either left or up depending on 
-	the table entry. When the characters match, the traversal may move diagonally. Matching characters
-	get added to the longest common subsequence (in our implementation this is an array of
-	characters LCS).
+	
 
 	Our Compiler
 	------------
@@ -68,8 +63,6 @@ import java.util.*;
 
 public class GAPA4 {
 	public static void main (String[] args) {
-		String gapa4ListString = "";
-
         // Used to get user input.
         Scanner input = new Scanner (System.in);
 
@@ -77,15 +70,15 @@ public class GAPA4 {
         // it's for printing purposes.
         int whichAlgorithm = -1;
 
-		// Takes the DNA Strands to have LCS ran on it.
+		// Saves the data found in astro-ph.txt
+		// to later be parsed and turned into a
+		// graph.
 		ArrayList<String> gapa4List = new ArrayList<String> ();
-
-        ArrayList<String> finalizedGAPA4 = new ArrayList<String> ();
 
 		// Creates an ArrayList of Edges and Vertexes to
 		// fed into the graph.
-		ArrayList<Edge> edges = new ArrayList<Edge> ();
-		ArrayList<Vertex> vertexes = new ArrayList<Vertex> ();
+		List<Edge> edges;
+		List<Vertex> vertexes;
 		
 		// Gets access to the Dijkstra class.
 		Dijkstra dijkstraAlgo = null;
@@ -93,18 +86,12 @@ public class GAPA4 {
 		// Gets access to the FW class.
 		FW floydWarshallAlgo = null;
 		
-		// Makes a graph.
+		// Makes graph.
 		Graph graphD = null;
 		Graph graphF = null;
 
 		// Gets access to the readfile class.
 		readfile rF = new readfile ();
-
-		// Gets access to the writefile class.
-		writefile wF = new writefile ();
-
-		// Gets access to the LCS class.
-		GAPA4 gapa4Access = new GAPA4 ();
         
         // Instantiates start, end and totalTime.
         long start = 0, end = 0, totalTimeDijkstra = 0, totalTimeFW = 0;
@@ -119,10 +106,15 @@ public class GAPA4 {
 		// Closes selected file.
 		rF.closeFile ();
 		
+		// Used to create each edge's unique ID.
 		int edgeID = 0;
 
+		// Used to determine what the user
+		// wants to do.
         int choice = -1;
 		
+		// Used to determine if the graph
+		// has been created.
 		Boolean graphCreated = false;
 
         do {
@@ -139,6 +131,7 @@ public class GAPA4 {
             } while (choice <= 0 || choice >= 7);
 
             switch (choice) {
+				// Creates the graph.
                 case 1:
 					if (!graphCreated) {
 						for (int i = 0; i < gapa4List.size (); i++) {
@@ -157,9 +150,12 @@ public class GAPA4 {
 						graphD = new Graph (vertexes, edges);
 						graphF = new Graph (vertexes, edges);
 						System.out.println ("\nThe graph has been created!\n");
+					} else {
+						System.out.println ("\nThe graph has already been created\n");
 					}
                     break;
 
+				// Runs Dijkstra's algorithm.
                 case 2:
                     whichAlgorithm = 1;
 
@@ -181,11 +177,13 @@ public class GAPA4 {
                     System.out.println ("\nDijkstra has been performed!\n");
                     break;
 
+				// Runs Floyd-Warshall's algorithm.
                 case 3:
                     whichAlgorithm = 2;
 					
 					// Gets access to the FW class.
-					floydWarshallAlgo = new FW (graphF);
+					floydWarshallAlgo = new FW ();
+					floydWarshallAlgo.FW (graphF);
 
             		// Gets the starting time of findLCS.
             		start = System.nanoTime ();
@@ -201,22 +199,28 @@ public class GAPA4 {
                     System.out.println ("\nFloyd-Warshall has been performed!\n");
                     break;
 
+				// Prints out the results of either
+				// Dijkstra's or Floyd-Warshall's 
+				// algorithm.
                 case 4:
                     if (whichAlgorithm == 1) {
                         System.out.println ("\n" + dijkstraAlgo.getSPath () + "\n");
                     } else if (whichAlgorithm == 2) {
-                        System.out.println ("\n" + floydWarshallAlgo.getResult () + "\n");
+                        System.out.println ("\n" + floydWarshallAlgo.getSPairsPath () + "\n");
                     } else {
 						System.out.println ("\nNo algorithms have been called, please call one!\n");
 					}
 					
                     break;
 
+				// Prints out the length of time that
+				// Dijkstra's or Floyd-Warshall's 
+				// algorithm took to complete.
                 case 5:
                     if (whichAlgorithm == 1) {
-                        
+                        System.out.println ("\nThe total time to run Dijkstra's Algorithm is: " + totalTimeDijkstra + "\n");
                     } else if (whichAlgorithm == 2) {
-                        
+                        System.out.println ("\nThe total time to run Floyd-Warshall's Algorithm is: " + totalTimeFW + "\n");
                     } else {
 						System.out.println ("\nNo algorithms have been called, please call one!\n");
 					}
