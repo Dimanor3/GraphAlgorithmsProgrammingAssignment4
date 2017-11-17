@@ -23,12 +23,13 @@ public class FW {
 		numV = vertices.size ();		// Get the number of vertices from the graph.
 		
 		fwMatrix = new double[numV][numV]; // Initialize square matrix size of number of vertices.
-		nextMatrix = new int[numV][numV];
+		nextMatrix = new int[numV][numV]; 
+		
+		nextMatrix = constructNextMatrix(); //fill next matrix with initial values
 		
 		for (int i = 0; i < numV; i++) { // Loop through matrix.
 			for (int j = 0; j < numV; j++) {
 				fwMatrix[i][j] = POSITIVE_INF; // Set all values to positive infinity.
-				nextMatrix[i][j] = 0; // Set next indices all equal to 0.
 			}
 		}
 		
@@ -58,7 +59,7 @@ public class FW {
                         double sum = (yx != POSITIVE_INF && xz != POSITIVE_INF) ? (yx + xz): POSITIVE_INF;
                         if (yz > sum) {
                             fwMatrix[y][z] = sum;
-							nextMatrix[y][z] = x; // Update next matrix.
+							nextMatrix[y][z] = nextMatrix[x][z]; // Update next matrix.
                         }
 					}
 				}
@@ -119,4 +120,28 @@ public class FW {
 
 		return SB.toString ();
     }
+    
+    private int[][] constructNextMatrix()
+    {
+    	int n[][] = new int[numV][numV];
+    	
+    	for (int i = 0; i < numV; i++)
+    	{
+    		for (int k = 0; k < numV; k++)
+    		{
+    			if (fwMatrix[i][k] != 0 && fwMatrix[i][k] != POSITIVE_INF)
+    			{
+    				p[i][k] = i;
+    			}
+    			
+    			else
+    			{
+    				p[i][k] = -1;
+    			}
+    		}
+    	}
+    	
+    	return p;
+    }
+    
 }
