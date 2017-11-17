@@ -9,6 +9,7 @@ public class Dijkstra {
     private Map<Vertex, Vertex> parent;             // Predecessors of path vertices.
     private Map<Vertex, Double> length;            // Weight associated with path.
 	private String stringSPath;
+	private Vertex sourceV; //starting vertex to find path from
 
 	/**
 		Constructor
@@ -29,6 +30,7 @@ public class Dijkstra {
 		@param vertex s the starting vertex (source)
 	**/
     public void doDijkstra (Vertex s) {
+		sourceV = s;
 		explored = new HashSet<Vertex> ();          // Hash Set of vertices that have been discovered.
         unexplored = new HashSet<Vertex> ();        // Hash set of vertices not yet discovered.
         length = new HashMap<Vertex, Double> ();   // Hash Map representing the length associated with each vertex.
@@ -175,10 +177,10 @@ public class Dijkstra {
 		@param vertex v the source vertex
 		@return LinkedList<vertex> the vertices in the shortest path
 	**/
-    public String getSPath (Vertex v) {
+    public String getSPath () {
 		// Create a linked list of vertices in the shortest path.
         LinkedList<Vertex> shortestP = new LinkedList<Vertex> ();
-        Vertex leg = v;             // Each leg in the path, to be updated.
+        Vertex leg = sourceV;             // Each leg in the path, to be updated.
 		StringBuilder SB = new StringBuilder ();
         
 		// If the shortest path does not exist
