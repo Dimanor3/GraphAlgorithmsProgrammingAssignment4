@@ -15,6 +15,14 @@ public class Vertex {
         this.vertexName = vertexName;
     }
     
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((vertexID == null) ? 0 : vertexID.hashCode());
+        return result;
+    }
+    
     /**
      * A get method to return the vertex id
      * @return String vertexID

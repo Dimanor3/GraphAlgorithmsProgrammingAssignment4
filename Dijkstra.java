@@ -5,7 +5,7 @@ public class Dijkstra {
     private List<Vertex> vertices;                  // Vertices.
     private List<Edge> edges;                       // Edges.
     private Set<Vertex> explored;                   // Explored vertices.
-    private Set<Vertex> unexplored;                 // Unexplored vertices.
+    private Set<Vertex> unexplored;            		//Unexplored vertices.
     private Map<Vertex, Vertex> parent;             // Predecessors of path vertices.
     private Map<Vertex, Double> length;            // Weight associated with path.
 	private String stringSPath;
@@ -22,6 +22,7 @@ public class Dijkstra {
          */
         this.vertices = new ArrayList<Vertex> (graph.getVerticesG ());
         this.edges = new ArrayList<Edge> (graph.getEdgiesG ());
+        
     }
 
 	
@@ -50,6 +51,7 @@ public class Dijkstra {
             unexplored.remove (currentV);
             findMinLens (currentV);
         }
+		
     }
 
 	/**
@@ -208,7 +210,7 @@ public class Dijkstra {
 		
 		for (Vertex eachVertex : shortestP)
 		{
-			SB.append (eachVertex.getVertexName ());
+			SB.append (eachVertex.getVertexName () + " --> ");
 		}
 		
 		stringSPath = SB.toString ();
