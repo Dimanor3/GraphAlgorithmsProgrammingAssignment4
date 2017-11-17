@@ -8,13 +8,12 @@ import java.io.*;
 import java.util.*;
 
 /*
-	This class is used to get access to the
-	DNA strands provided by a user provided
-	file.
+	This class is used to get access to any user
+	provided text document.
 
-	Once the DNA strands are read it is, within
+	Once the text document is read it is, within
 	this class, turned into a usable String arraylist
-	by main.
+	for main.
 
 	Afterwards it returns the arraylist to main.
 */
@@ -22,8 +21,9 @@ public class readfile {
 	// This scanner will be used to open, read and close the choosen file.
 	private Scanner read;
 
-	// This arraylist holds the DNA strands.
-	private ArrayList<String> dnaLCS = new ArrayList<String> ();
+	// This arraylist holds the provided content found
+	// in the text document.
+	private ArrayList<String> txtData = new ArrayList<String> ();
 
     /*
 	    This function opens the file.
@@ -37,15 +37,15 @@ public class readfile {
 	}
 
 	/*
-	    This function reads the file and turns the DNA Strands list into a
-	    String arraylist for main, afterwards, it returns the arraylist.
+	    This function reads the file and turns the data into a String
+	    arraylist for main, afterwards, it returns the arraylist.
 	*/
 	public ArrayList<String> readFile () {
 		while (read.hasNext ()) {
-			dnaLCS.add (read.next ().replaceAll ("[;]", ""));
+			txtData.add (read.next ().replaceAll ("[;]", ""));
 		}
 
-		return dnaLCS;
+		return txtData;
 	}
 
 	// This function closes the file.
@@ -53,7 +53,8 @@ public class readfile {
 		read.close ();
 	}
 
+	// This function clears the data found inside txtData
 	public void clearFile () {
-	    dnaLCS.clear ();
+	    txtData.clear ();
 	}
 }

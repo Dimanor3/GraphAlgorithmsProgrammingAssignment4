@@ -126,6 +126,9 @@ public class GAPA4 {
 		// has been created.
 		Boolean graphCreated = false;
 		
+		// Just used to keep a warning from occurring
+		// before the user has had the chance to input
+		// anything.
 		Boolean firstRun = true;
 
         do {
