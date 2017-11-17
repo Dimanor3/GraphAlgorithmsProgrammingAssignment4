@@ -56,7 +56,6 @@ public class Dijkstra {
 		@param vertex currentV
 	**/
     private void findMinLens (Vertex currentV) {
-       
 	   List<Vertex> neighbors = getAdjacents (currentV);     // Get the neighboring vertices of the current vertex.
         
 		// Loop through all the neighbors, reachable unxeplored from currentV.
@@ -177,7 +176,6 @@ public class Dijkstra {
 		@return LinkedList<vertex> the vertices in the shortest path
 	**/
     public String getSPath (Vertex v) {
-		
 		// Create a linked list of vertices in the shortest path.
         LinkedList<Vertex> shortestP = new LinkedList<Vertex>();
         Vertex leg = v;             // Each leg in the path, to be updated.
@@ -216,5 +214,4 @@ public class Dijkstra {
 
 		return stringSPath;
     }
-
 }

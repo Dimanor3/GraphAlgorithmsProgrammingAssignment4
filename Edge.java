@@ -5,16 +5,16 @@ public class Edge  {
     private String edgeID; //the id number of the edge
     private Vertex beginLoc; //the first vertex in the edge
     private Vertex endLoc; //the second vertex in the edge
-    private int edgeWeight; //the weight of the edge
+    private double edgeWeight; //the weight of the edge
 
     /**
      * Constructor
      * @param String edgeID
      * @param Vertex beginLoc
      * @param Vertex endLoc
-     * @param int edgeWeight
+     * @param double edgeWeight
      */
-    public Edge(String edgeID, Vertex beginLoc, Vertex endLoc, int edgeWeight) {
+    public Edge(String edgeID, Vertex beginLoc, Vertex endLoc, double edgeWeight) {
         this.edgeID = edgeID;
         this.beginLoc = beginLoc;
         this.endLoc = endLoc;
@@ -49,7 +49,7 @@ public class Edge  {
      * get method to return the weight of the edge
      * @return int edgeWeight
      */
-    public int getWeightofEdge() {
+    public double getWeightofEdge() {
         return edgeWeight;
     }
 

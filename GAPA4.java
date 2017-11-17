@@ -82,6 +82,21 @@ public class GAPA4 {
 
         ArrayList<String> finalizedGAPA4 = new ArrayList<String> ();
 
+		// Creates an ArrayList of Edges and Vertexes to
+		// fed into the graph.
+		ArrayList<Edge> edges = new ArrayList<Edge> ();
+		ArrayList<Vertex> vertexes = new ArrayList<Vertex> ();
+		
+		// Gets access to the Dijkstra class.
+		Dijkstra dijkstraAlgo = null;
+		
+		// Gets access to the FW class.
+		FW floydWarshallAlgo = null;
+		
+		// Makes a graph.
+		Graph graphD = null;
+		Graph graphF = null;
+
 		// Gets access to the readfile class.
 		readfile rF = new readfile ();
 
@@ -90,34 +105,25 @@ public class GAPA4 {
 
 		// Gets access to the LCS class.
 		GAPA4 gapa4Access = new GAPA4 ();
-
-        // Gets access to the Dijkstra class.
-        Dijkstra dijkstraAlgo = new Dijkstra ();
-        
-        // Gets access to the FW class.
-        FW floydWarshallAlgo = new FW ();
-
-        // Gets access to the graph class.
-        Graph graph = new Graph ();
         
         // Instantiates start, end and totalTime.
         long start = 0, end = 0, totalTime = 0;
 
 		// Attempts to open selected file(s).
-		for (int i = 0; i < args.length; i++) {
-            // Opens selected files.
-			rF.openFile (args[i]);
-            
-			// Reads selected file into gapa4List.
-			gapa4List.addAll (rF.readFile ());
-            
-            rF.clearFile ();
+		// Opens selected files.
+		rF.openFile ("astro-ph.txt");
+		
+		// Reads selected file into gapa4List.
+		gapa4List.addAll (rF.readFile ());
 
-    		// Closes selected file.
-	    	rF.closeFile ();
-		}
+		// Closes selected file.
+		rF.closeFile ();
+		
+		int edgeID = 0;
 
         int choice = -1;
+		
+		Boolean graphCreated = false;
 
         do {
             do {
@@ -134,12 +140,31 @@ public class GAPA4 {
 
             switch (choice) {
                 case 1:
+					if (!graphCreated) {
+						for (int i = 0; i < gapa4List.size (); i++) {
+							if (gapa4List.get (i).contains ("id")) {
+								vertexes.add (new Vertex (gapa4List.get (i + 1), gapa4List.get (i + 3).replaceAll ("[\"]", "") + " " + gapa4List.get (i + 4).replaceAll ("[\"]", "")));
+							}
+							
+							if (gapa4List.get (i).contains ("source")) {
+								edges.add (new Edge (Integer.toString (edgeID), vertexes.get (Integer.valueOf (gapa4List.get (i + 1))), vertexes.get (Integer.valueOf (gapa4List.get (i + 3))), Double.parseDouble (gapa4List.get (i + 5))));
+								
+								edgeID++;
+							}
+						}
 
-                    System.out.println ("\nThe graph has been created!\n");
+						// Makes graph.
+						graphD = new Graph (vertexes, edges);
+						graphF = new Graph (vertexes, edges);
+						System.out.println ("\nThe graph has been created!\n");
+					}
                     break;
 
                 case 2:
                     whichAlgorithm = 1;
+
+					// Gets access to the Dijkstra class.
+					dijkstraAlgo = new Dijkstra (graphD);
                     
     	        	// Gets the starting time of findLCS.
 	            	start = System.nanoTime ();
@@ -158,10 +183,14 @@ public class GAPA4 {
 
                 case 3:
                     whichAlgorithm = 2;
+					
+					// Gets access to the FW class.
+					floydWarshallAlgo = new FW (graphF);
 
             		// Gets the starting time of findLCS.
             		start = System.nanoTime ();
 
+					floydWarshallAlgo.doFW ();
 
             		// Gets the ending time of findLCS.
             		end = System.nanoTime ();
@@ -174,18 +203,24 @@ public class GAPA4 {
 
                 case 4:
                     if (whichAlgorithm == 1) {
-                        
+                        System.out.println ("\n" + dijkstraAlgo.getSPath () + "\n");
+                    } else if (whichAlgorithm == 2) {
+                        System.out.println ("\n" + floydWarshallAlgo.getResult () + "\n");
                     } else {
-                        
-                    }
+						System.out.println ("\nNo algorithms have been called, please call one!\n");
+					}
+					
                     break;
 
                 case 5:
                     if (whichAlgorithm == 1) {
                         
-                    } else {
+                    } else if (whichAlgorithm == 2) {
                         
-                    }
+                    } else {
+						System.out.println ("\nNo algorithms have been called, please call one!\n");
+					}
+					
                     break;
             }
         } while (choice != 6);
