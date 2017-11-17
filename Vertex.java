@@ -40,18 +40,28 @@ public class Vertex {
      */
     @Override
     public boolean equals (Object otherV) {
-        if (this == otherV) //if the same object (thereby vertex)
+        if (this == otherV) { //if the same object (thereby vertex)
             return true;
-        if (otherV == null) //if the newOther vertex is null
+		}
+		
+        if (otherV == null) { //if the newOther vertex is null
             return false;
-        if (this.getClass() != otherV.getClass()) //if the two are not the same type of object
+		}
+		
+        if (this.getClass () != otherV.getClass ()) { //if the two are not the same type of object
             return false;
+		}
+		
         Vertex newOther = (Vertex) otherV; //cast to Vertex to compare as vertices
+		
         if (vertexID == null) { //if trying to compare to a null vertex
-            if (newOther.vertexID != null)
+            if (newOther.vertexID != null) {
                 return false;
-        } else if (!vertexID.equals(newOther.vertexID)) //compare by ids
+			}
+        } else if (!vertexID.equals (newOther.vertexID)) {//compare by ids
             return false;
+		}
+		
         return true;
     }
 
@@ -63,5 +73,4 @@ public class Vertex {
     public String toString () {
         return vertexName;
     }
-
 }

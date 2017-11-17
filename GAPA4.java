@@ -107,7 +107,7 @@ public class GAPA4 {
 		GAPA4 gapa4Access = new GAPA4 ();
         
         // Instantiates start, end and totalTime.
-        long start = 0, end = 0, totalTime = 0;
+        long start = 0, end = 0, totalTimeDijkstra = 0, totalTimeFW = 0;
 
 		// Attempts to open selected file(s).
 		// Opens selected files.
@@ -176,7 +176,7 @@ public class GAPA4 {
             		end = System.nanoTime ();
 
             		// Gets the total time that findLCS ran.
-            		totalTime = end - start;
+            		totalTimeDijkstra = end - start;
 
                     System.out.println ("\nDijkstra has been performed!\n");
                     break;
@@ -196,7 +196,7 @@ public class GAPA4 {
             		end = System.nanoTime ();
 
             		// Gets the total time that findLCS ran.
-            		totalTime = end - start;
+            		totalTimeFW = end - start;
 
                     System.out.println ("\nFloyd-Warshall has been performed!\n");
                     break;

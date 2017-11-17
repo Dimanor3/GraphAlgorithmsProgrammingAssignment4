@@ -37,8 +37,7 @@ public class Graph {
      * A get method to return the number of vertices in the graph
      * @return int the number of vertices in the graph
      */
-    public int numV ()
-    {
+    public int numV () {
     	return verticesG.size ();
     }
 
@@ -46,8 +45,7 @@ public class Graph {
      * A get method to return the number of edges in the graph
      * @return int the number of edges in the graph
      */
-    public int numE ()
-    {
+    public int numE () {
     	return edgiesG.size ();
     }
 }

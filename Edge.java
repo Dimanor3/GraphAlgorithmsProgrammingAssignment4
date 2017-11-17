@@ -1,7 +1,7 @@
 /*
  * Class for edge objects in the graph
  */
-public class Edge  {
+public class Edge {
     private String edgeID; //the id number of the edge
     private Vertex beginLoc; //the first vertex in the edge
     private Vertex endLoc; //the second vertex in the edge
@@ -61,6 +61,4 @@ public class Edge  {
     public String toString () {
         return beginLoc + " --> " + endLoc;
     }
-
-
 }

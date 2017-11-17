@@ -177,7 +177,7 @@ public class Dijkstra {
 	**/
     public String getSPath (Vertex v) {
 		// Create a linked list of vertices in the shortest path.
-        LinkedList<Vertex> shortestP = new LinkedList<Vertex>();
+        LinkedList<Vertex> shortestP = new LinkedList<Vertex> ();
         Vertex leg = v;             // Each leg in the path, to be updated.
 		StringBuilder SB = new StringBuilder ();
         
