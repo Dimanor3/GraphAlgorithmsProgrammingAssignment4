@@ -174,14 +174,8 @@ public class GAPA4 {
 						graphF = new Graph (vertexes, edges);
 						System.out.println ("\nThe graph has been created!\n");
 						
-						
-						//for testing purposes
-						for (int i = 0; i < vertexes.size(); i++)
-						{
-							System.out.println("vertex: " + vertexes.get(i).toString());
-						}
-						
 						graphCreated = true;
+						
 					} else {
 						System.out.println ("\nThe graph has already been created\n");
 					}
