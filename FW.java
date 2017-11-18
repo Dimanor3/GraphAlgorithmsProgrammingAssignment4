@@ -8,7 +8,7 @@ public class FW {
 	private List<Vertex> vertices; 							// List of graph vertices.
 	private List<Edge> edges; 								// List of graph edges.
 	private int numV; 										// Number of vertices in the graph.
-	private double[][] fwMatrix; 								// Matrix of weights used to carry out the floyd warshall algorithm.
+	private double[][] fwMatrix; 							// Matrix of weights used to carry out the floyd warshall algorithm.
 	private int[][] nextMatrix; 							// Matrix of indices used to carry out the floyd warshall.
 	private String shortestPaths; 							// All pairs shortest paths, in a string format for printability.
 	private final int POSITIVE_INF = Integer.MAX_VALUE;		// A large integer to represent positive infinity.
@@ -22,13 +22,27 @@ public class FW {
 		edges = G.getEdgiesG ();		// Extract edges from graph.
 		numV = vertices.size ();		// Get the number of vertices from the graph.
 		
-		fwMatrix = new double[numV][numV]; // Initialize square matrix size of number of vertices.
 		
-		nextMatrix = constructNextMatrix(); //fill next matrix with initial values
+		ArrayList<Vertex> newVertices = new ArrayList<Vertex>();
+		for (int i = 0; i < (int) numV / 2; i++)
+		{
+			newVertices.add(vertices.get(i));
+		}
+		
+		vertices = newVertices;
+		numV = vertices.size();
+		
+		fwMatrix = new double[numV][numV]; // Initialize square matrix size of number of vertices.
 		
 		for (int i = 0; i < numV; i++) { // Loop through matrix.
 			for (int j = 0; j < numV; j++) {
 				fwMatrix[i][j] = POSITIVE_INF; // Set all values to positive infinity.
+			
+				if (i == j)
+				{
+					fwMatrix[i][j] = 0; //every vertex has a path to itself with weight 0
+				}
+				
 			}
 		}
 		
@@ -36,10 +50,27 @@ public class FW {
 		// two vertices (where an edge exists), set 
 		// the fwMatrix equal to the weight.
 		for (Edge eachEdge: edges) {
-			fwMatrix[vertices.indexOf ( eachEdge.getBeginLocation ())][vertices.indexOf (eachEdge.getEndLocation ())] = eachEdge.getWeightofEdge ();
+			
+			int start = -1;
+			int end = -1;
+			
+			if (vertices.contains(eachEdge.getBeginLocation()))
+			{
+				start = vertices.indexOf(eachEdge.getBeginLocation());
+			}
+			
+			if (vertices.contains(eachEdge.getEndLocation()))
+			{
+				end = vertices.indexOf(eachEdge.getEndLocation());
+			}
+			
+			if (start != -1 && end != -1)
+				fwMatrix[start][end] = eachEdge.getWeightofEdge (); //add weight of edge to matrix at the intersection
 		}
+		
+		nextMatrix = constructNextMatrix(); //fill next matrix with initial values
 	}
- 
+	
 	/**
 	 * Execution of the floyd warshall algorithm.
 	 */
@@ -48,23 +79,27 @@ public class FW {
         for (int x = 0; x < numV; x++) {
             for (int y = 0; y < numV; y++) {
                 for (int z = 0; z < numV; z++) {
-                    if (y == z)	{ // Every vertex has a path to itself, where weight is 0.
-						fwMatrix[y][z] = 0;
-                    } else { // For all other edges where vertices are not the same.
-						double yz = fwMatrix[y][z]; // Set weights.
-                        double yx = fwMatrix[y][x];
-                        double xz = fwMatrix[x][z];
-                        // Compare using relaxation.
-                        double sum = (yx != POSITIVE_INF && xz != POSITIVE_INF) ? (yx + xz): POSITIVE_INF;
-                        if (yz > sum) {
-                            fwMatrix[y][z] = sum;
-							nextMatrix[y][z] = nextMatrix[x][z]; // Update next matrix.
+                    
+                	if (fwMatrix[y][x] == POSITIVE_INF || fwMatrix[x][z] == POSITIVE_INF){ 
+						
+                    	continue;
+                    	
+                    } 
+                    
+                    // For all other edges where vertices are not the same.
+					double yz = fwMatrix[y][z]; // weight variables for relaxation comparison
+                    double yx = fwMatrix[y][x];
+                    double xz = fwMatrix[x][z];
+                   
+                    // Compare using relaxation
+                    if (yz > yx + xz) { //if shorter path
+                        fwMatrix[y][z] = yz + xz;
+                        nextMatrix[y][z] = nextMatrix[x][z]; // Update next matrix.
                         }
 					}
 				}
 			}
-		}
-
+        
         shortestPaths = getResult (); // Get the string formatted version of the result.
     }
 	
@@ -126,7 +161,16 @@ public class FW {
 					SB.append ("\nShortest Path from: " + vertices.get (k).getVertexName () + " to: " + vertices.get (h).getVertexName () + "\n");
 					tempPath = getFWPath (k, h); // Get the path between vertices.
 					for (Vertex v: tempPath) {	// Add the path to the final string.
-						SB.append (v.getVertexName () + " --> ");
+						
+						if (v.equals(null))
+						{
+							SB.append("No path");
+						}
+						
+						else
+						{
+							SB.append (v.getVertexName () + " --> ");
+						}
 					}
 
 					SB.append ("\nTotal Path Weight: " + fwMatrix[h][k] + " ");
