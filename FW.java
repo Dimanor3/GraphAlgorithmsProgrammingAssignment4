@@ -23,7 +23,6 @@ public class FW {
 		numV = vertices.size ();		// Get the number of vertices from the graph.
 		
 		fwMatrix = new double[numV][numV]; // Initialize square matrix size of number of vertices.
-		nextMatrix = new int[numV][numV]; 
 		
 		nextMatrix = constructNextMatrix(); //fill next matrix with initial values
 		
@@ -83,13 +82,30 @@ public class FW {
 	 * 
 	 * @return List<Vertex> path a list of the vertices in the shortest path of two vertices.
 	 */
-	private List<Vertex> getPath (int i, int j) {
+	private List<Vertex> getFWPath (int k, int j) {
 		ArrayList<Vertex> path = new ArrayList<Vertex> ();
 		
-		getPath (i, nextMatrix[i][j]); // Get the path.
+		if (k == j)
+		{
+			path.add(vertices.get(k));
+		}
+		
+		else if (nextMatrix[k][j] == 0)
+		{
+			path.add(null);
+		}
+		
+		else
+		{
+			getFWPath(k, nextMatrix[k][j]);
+			path.add(vertices.get(j));
+		}
+		
+	/*	
+		getFWPath (i, nextMatrix[i][j]); // Get the path.
 		path.add (vertices.get (nextMatrix[i][j])); // Add the path to the list.
-		getPath (nextMatrix[i][j], j); // Get the alternate path.
-
+		getFWPath (nextMatrix[i][j], j); // Get the alternate path.
+*/
 		return path;
 	}
  
@@ -108,7 +124,7 @@ public class FW {
             for (int h = 0; h < numV; h++) {
                 if (fwMatrix[k][h] != POSITIVE_INF) { // If a path exists.
 					SB.append ("\nShortest Path from: " + vertices.get (k).getVertexName () + " to: " + vertices.get (h).getVertexName () + "\n");
-					tempPath = getPath (k, h); // Get the path between vertices.
+					tempPath = getFWPath (k, h); // Get the path between vertices.
 					for (Vertex v: tempPath) {	// Add the path to the final string.
 						SB.append (v.getVertexName () + " --> ");
 					}
@@ -131,17 +147,17 @@ public class FW {
     		{
     			if (fwMatrix[i][k] != 0 && fwMatrix[i][k] != POSITIVE_INF)
     			{
-    				p[i][k] = i;
+    				n[i][k] = i;
     			}
     			
     			else
     			{
-    				p[i][k] = -1;
+    				n[i][k] = -1;
     			}
     		}
     	}
     	
-    	return p;
+    	return n;
     }
     
 }
