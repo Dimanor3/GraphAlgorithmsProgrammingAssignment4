@@ -1,6 +1,12 @@
 import java.util.List;
 
 /*
+	Bijan Razavi
+	Elizabeth Thomas
+	Gyovanni Boston-Crompton
+*/
+
+/*
  * class for graph object
  */
 public class Graph {

@@ -1,4 +1,10 @@
 /*
+	Bijan Razavi
+	Elizabeth Thomas
+	Gyovanni Boston-Crompton
+*/
+
+/*
  * Class for edge objects in the graph
  */
 public class Edge {

@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.*;
 
+/*
+	Bijan Razavi
+	Elizabeth Thomas
+	Gyovanni Boston-Crompton
+*/
+
 public class Dijkstra {
     private List<Vertex> vertices;                  // Vertices.
     private List<Edge> edges;                       // Edges.

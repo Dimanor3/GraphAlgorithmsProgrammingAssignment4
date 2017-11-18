@@ -2,6 +2,12 @@ import static java.lang.String.*;
 import java.util.*;
 
 /*
+	Bijan Razavi
+	Elizabeth Thomas
+	Gyovanni Boston-Crompton
+*/
+
+/*
  * Class to execute the Floyd Warshall algorithm to find all pairs shortest paths.
  */
 public class FW {

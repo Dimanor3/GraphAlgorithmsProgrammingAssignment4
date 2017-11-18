@@ -1,6 +1,13 @@
 /*
  * A class to hold vertex objects for a graph
  */
+ 
+/*
+	Bijan Razavi
+	Elizabeth Thomas
+	Gyovanni Boston-Crompton
+*/
+
 public class Vertex {
     final private String vertexID;
     final private String vertexName;
