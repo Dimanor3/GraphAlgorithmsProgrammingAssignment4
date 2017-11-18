@@ -12,6 +12,8 @@ public class FW {
 	private int[][] nextMatrix; 							// Matrix of indices used to carry out the floyd warshall.
 	private String shortestPaths; 							// All pairs shortest paths, in a string format for printability.
 	private final int POSITIVE_INF = Integer.MAX_VALUE;		// A large integer to represent positive infinity.
+	private ArrayList<Vertex> tempPath;
+	
 	
 	/**
 	 * Constructor
@@ -113,26 +115,25 @@ public class FW {
 	 * 
 	 * @return List<Vertex> path a list of the vertices in the shortest path of two vertices.
 	 */
-	private ArrayList<Vertex> getFWPath (int k, int j) {
-		ArrayList<Vertex> path = new ArrayList<Vertex>();
+	private void getFWPath (int k, int j) {
 		
 		if (k == j)
 		{
-			path.add(vertices.get(k));
+			tempPath.add(vertices.get(k));
+					
 		}
 		
 		else if (nextMatrix[k][j] == 0)
 		{
-			path.add(null);
+			tempPath.add(null);
 		}
 		
 		else
 		{
 			getFWPath(k, nextMatrix[k][j]);
-			path.add(vertices.get(j));
+			tempPath.add(vertices.get(j));
 		}
 		
-		return path;
 	}
  
 	
@@ -142,7 +143,6 @@ public class FW {
 	 * @return String a string version of all the shortest paths for all pairs.
 	 */
     private String getResult ()	{   
-		List<Vertex> tempPath;
 		StringBuilder SB = new StringBuilder ();
 		
 		//a meta-data message
@@ -151,10 +151,13 @@ public class FW {
 		
 		// Loop through the matrix.
 		for (int k = 0; k < numV; k++) {
+			
             for (int h = 0; h < numV; h++) {
-                if (fwMatrix[k][h] < 2.5E9) { // If a path exists.
-					SB.append("\nShortest Path from: " + vertices.get (k).getVertexName () + " to: " + vertices.get (h).getVertexName () + "\n");
-					tempPath = getFWPath (k, h); // Get the path between vertices
+                
+            	if (fwMatrix[k][h] < 100) { // If a path exists.
+					
+            		SB.append("\nShortest Path from: " + vertices.get (k).getVertexName () + " to: " + vertices.get (h).getVertexName () + "\n");
+					getFWPath (k, h); // Get the path between vertices
 					
 					for (int i = 0; i < tempPath.size(); i++)
 					{
@@ -162,7 +165,9 @@ public class FW {
 					}
 					
 					SB.append("\nTotal Path Weight: " + fwMatrix[h][k] + " ");
+					tempPath = new ArrayList<Vertex>();
 				}
+            	
 			}
 		}
 
