@@ -72,6 +72,7 @@ public class FW {
 				fwMatrix[start][end] = eachEdge.getWeightofEdge (); //add weight of edge to matrix at the intersection
 		}
 		
+		
 		nextMatrix = constructNextMatrix(); //fill next matrix with initial values
 	}
 	
@@ -89,7 +90,7 @@ public class FW {
                     	continue;
                     	
                     } 
-                    
+                   
                     // For all other edges where vertices are not the same.
 					double yz = fwMatrix[y][z]; // weight variables for relaxation comparison
                     double yx = fwMatrix[y][x];
@@ -100,7 +101,7 @@ public class FW {
                         fwMatrix[y][z] = yz + xz;
                         nextMatrix[y][z] = nextMatrix[x][z]; // Update next matrix.
                         }
-					}
+                }
 				}
 			}
         
@@ -126,12 +127,11 @@ public class FW {
 		if (k == j)
 		{
 			tempPath.add(vertices.get(k));
-					
 		}
 		
 		else if (nextMatrix[k][j] == 0)
 		{
-			tempPath.add(null);
+			tempPath.add(new Vertex(" ", " no path "));
 		}
 		
 		else
@@ -150,6 +150,7 @@ public class FW {
 	 */
     private String getResult ()	{   
 		StringBuilder SB = new StringBuilder ();
+		tempPath = new ArrayList<Vertex>();
 		
 		//a meta-data message
 		SB.append("Note: since the graph is too large to compute this algorithm in ram, we will be )"
@@ -167,10 +168,12 @@ public class FW {
 					
 					for (int i = 0; i < tempPath.size(); i++)
 					{
-						SB.append(tempPath.get(i).toString() + " --> ");
+						SB.append(tempPath.get(i).toString() + " ");
+						if (i != tempPath.size() -1)
+						{
+							SB.append("--> ");
+						}
 					}
-					
-					SB.append("\nTotal Path Weight: " + fwMatrix[h][k] + " ");
 					tempPath = new ArrayList<Vertex>();
 				}
             	
